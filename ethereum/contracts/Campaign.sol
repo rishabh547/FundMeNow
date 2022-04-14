@@ -6,6 +6,7 @@ pragma solidity >=0.7.0 <0.9.0;
  * @dev Implements voting process along with vote delegation
  */
 // G means global
+
 contract CampaignFactory{
 address[] public deployedCampaigns;
 
@@ -22,6 +23,8 @@ function createCampaign(uint minimum) public{
         return deployedCampaigns;
     }
 }
+
+
 contract Campaign {
     //For Request we will define a Struct definition(diff from instance variables)
     //Structure refers to a collection consisting of elements of heterogeneous data type.
