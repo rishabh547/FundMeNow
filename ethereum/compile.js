@@ -1,4 +1,3 @@
-// Refer Screenshot on 26 th January for ethereum folder
 const path = require("path");
 const solc = require("solc");
 const fs = require("fs-extra");
@@ -50,31 +49,3 @@ for (let contract in contracts) {
     fs.outputJsonSync(path.resolve(buildPath, `${contract}.json`), contracts[contract]);
   }
 }
-
-
-//Below is Outdated Code
-// const path = require('path');
-// const solc = require('solc');
-// const fs = require('fs-extra');
-
-// //Now get build folder directory
-// const buildPath = path.resolve(__dirname,'build');
-// //Deleting the build folder
-// fs.removeSync(buildPath);
-
-// const campaignPath = path.resolve(__dirname,'contracts','Campaign.sol');
-
-// //Read Source Code from above File 
-// const source = fs.readFileSync(campaignPath,'utf-8');
-// const output = solc.compile(source,1).contracts;
-
-// //Now after compile write output to build dir
-// fs.ensureDirSync(buildPath);
-
-// //Now loop through output to get contract and write to a diff file:Campaign , campaign factory
-// for(let contract in output ){
-//     fs.outputJSONSync(
-//         path.resolve(buildPath,contract + '.json'),
-//         output[contract]
-//         );
-// };
