@@ -14,6 +14,6 @@ if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
         process.env.RINKEBY_ENDPOINT
     );
     web3 = new Web3(provider);
-}
+};
 
 export default web3;

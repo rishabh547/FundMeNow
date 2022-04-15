@@ -21,13 +21,16 @@ const CampaignNew = () => {
 
     try {
       // const accounts = await web3.eth.getAccounts();
-      const accounts = web3.eth.requestAccounts();
-      console.log(accounts);
+      web3.eth.requestAccounts()
+        .then(async res => {
+          const accounts = res;
 
-      await factory.methods
-        .createCampaign(minimumContribution)
-        .send({
-          from: accounts[0]
+          await factory.methods.createCampaign(minimumContribution).send({
+            from: accounts[0]
+          })
+            .on('transactionHash', function (hash) {
+              console.log("Transaction hash: ", hash);
+            })
         })
 
       router.push('/');
