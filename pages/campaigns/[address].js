@@ -8,16 +8,19 @@ import Link from 'next/link';
 
 class CampaignShow extends Component {
   static async getInitialProps(props) {
+
+    // passing the contract instance address of deployed contract instance by factory to get the instance object of that campaign locally
     const campaign = Campaign(props.query.address);
 
     const summary = await campaign.methods.getSummary().call();
+    console.log(summary);
 
     return {
       address: props.query.address,
-      minimumContribution: summary[0],
-      balance: summary[1],
-      requestsCount: summary[2],
-      approversCount: summary[3],
+      minimumContribution: summary[0].toString(),
+      balance: summary[1].toString(),
+      requestsCount: summary[2].toString(),
+      approversCount: summary[3].toString(),
       manager: summary[4]
     };
   }
@@ -40,26 +43,28 @@ class CampaignShow extends Component {
         style: { overflowWrap: 'break-word' }
       },
       {
-        header: minimumContribution,
+        header: parseInt(minimumContribution, 16),
         meta: 'Minimum Contribution (wei)',
         description:
           'You must contribute at least this much wei to become an approver'
       },
       {
-        header: requestsCount,
+        header: parseInt(requestsCount, 16),
         meta: 'Number of Requests',
         description:
           'A request tries to withdraw money from the contract. Requests must be approved by approvers'
       },
       {
-        header: approversCount,
+        header: parseInt(approversCount, 16),
         meta: 'Number of Approvers',
         description:
           'Number of people who have already donated to this campaign'
       },
       {
-        header: web3.utils.fromWei(balance, 'ether'),
-        meta: 'Campaign Balance (ether)',
+        // header: web3.utils.fromWei(balance, 'ether'),
+        header: parseInt(balance, 16),
+        meta: "Campaign Balance (wei)",
+        // meta: 'Campaign Balance (ether)',
         description:
           'The balance is how much money this campaign has left to spend.'
       }

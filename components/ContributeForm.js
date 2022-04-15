@@ -16,14 +16,23 @@ const ContributeForm = (props) => {
 
     const campaign = Campaign(props.address);
 
-    this.setState({ loading: true, errorMessage: '' });
+    setLoading(true);
+    setErrorMessage('');
 
     try {
-      const accounts = await web3.eth.getAccounts();
-      await campaign.methods.contribute().send({
-        from: accounts[0],
-        value: web3.utils.toWei(value, 'ether')
-      });
+
+      web3.eth.requestAccounts()
+        .then(async res => {
+          const accounts = res;
+
+          await campaign.methods.contribute().send({
+            from: accounts[0],
+            value: web3.utils.toWei(value, 'ether')
+          })
+            .on('transactionHash', function (hash) {
+              console.log("Transaction hash: ", hash);
+            })
+        })
 
       router.replace('/campaigns/[address]', `/campaigns/${props.address}`);
     } catch (err) {
