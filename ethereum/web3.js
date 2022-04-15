@@ -1,7 +1,7 @@
 import Web3 from 'web3';
 
 // Load environment variables.
-require("dotenv").config();
+// require("dotenv").config();
 
 let web3;
 
