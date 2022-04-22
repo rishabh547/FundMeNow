@@ -10,7 +10,12 @@ const CampaignNew = () => {
   const router = useRouter();
 
   const [errorMessage, setErrorMessage] = useState('');
+
   const [minimumContribution, setMinimumContribution] = useState('');
+  const [campaignName, setCampaignName] = useState('');
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
+
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async event => {
@@ -25,7 +30,7 @@ const CampaignNew = () => {
         .then(async res => {
           const accounts = res;
 
-          await factory.methods.createCampaign(minimumContribution).send({
+          await factory.methods.createCampaign(campaignName, category, description, minimumContribution).send({
             from: accounts[0]
           })
             .on('transactionHash', function (hash) {
@@ -46,6 +51,43 @@ const CampaignNew = () => {
       <h3>Create a Campaign</h3>
 
       <Form onSubmit={onSubmit} error={!!errorMessage}>
+
+        <Form.Field>
+          <label>Campaign Name</label>
+          <Input
+            label="Enter Campaign Name"
+            labelPosition="left"
+            value={campaignName}
+            onChange={event =>
+              setCampaignName(event.target.value)
+            }
+          />
+        </Form.Field>
+
+        <Form.Field>
+          <label>Campaign Category</label>
+          <Input
+            label="Enter Campaign Category"
+            labelPosition="left"
+            value={category}
+            onChange={event =>
+              setCategory(event.target.value)
+            }
+          />
+        </Form.Field>
+
+        <Form.Field>
+          <label>Campaign Description</label>
+          <Input
+            label="Enter Campaign Description"
+            labelPosition="left"
+            value={description}
+            onChange={event =>
+              setDescription(event.target.value)
+            }
+          />
+        </Form.Field>
+
         <Form.Field>
           <label>Minimum Contribution</label>
           <Input

@@ -13,28 +13,20 @@ class RequestIndex extends Component {
     const requestCount = await campaign.methods.getRequestsCount().call();
     const approversCount = await campaign.methods.approversCount().call();
 
-    var reqq = [];
-    for (var i = 0; i < requestCount.toString(); i++) {
-      var req = await campaign.methods.requests(i).call();
-      reqq.push(req);
-    }
+    const requests = await Promise.all(
+      Array(parseInt(requestCount))
+        .fill()
+        .map((element, index) => {
+          return campaign.methods.requests(index).call();
+        })
+    );
+    console.log("Requests: ", requests);
 
-    console.log(reqq, typeof (reqq));
-
-    // const requests = await Promise.all(
-    //   Array(parseInt(requestCount))
-    //     .fill()
-    //     .map((element, index) => {
-    //       return campaign.methods.requests(index).call();
-    //     })
-    // );
-    return { address, reqq, requestCount, approversCount };
+    return { address, requests, requestCount, approversCount };
   }
 
-
-
   renderRows() {
-    return this.props?.reqq?.map((request, index) => {
+    return this.props?.requests?.map((request, index) => {
       return (
         <RequestRow
           key={index}
