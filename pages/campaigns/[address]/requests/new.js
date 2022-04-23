@@ -12,14 +12,14 @@ const RequestNew = ({ address }) => {
 
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const [recipent, setRecipient] = useState('');
+  const [recipient, setRecipient] = useState('');
   const [description, setDescription] = useState('');
   const [value, setValue] = useState('');
 
   const onSubmit = async event => {
     event.preventDefault();
 
-    const campaign = Campaign(props.address);
+    const campaign = Campaign(address);
 
     setLoading(true);
     setErrorMessage('');

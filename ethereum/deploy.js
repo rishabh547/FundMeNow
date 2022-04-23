@@ -6,8 +6,8 @@ const Web3 = require("web3");
 
 const compiledFactory = require("./build/CampaignFactory.json");
 
-const mnemonicPhrase = process.env.ACCOUNT_MNEMONIC;
-const network = process.env.RINKEBY_ENDPOINT;
+const mnemonicPhrase = process.env.GANACHE_MNEMONIC;
+const network = process.env.GANACHE_ENDPOINT;
 
 console.log("Connecting to", network);
 console.log("Mnemonic phrase:", mnemonicPhrase);

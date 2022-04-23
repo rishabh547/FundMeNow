@@ -60,13 +60,13 @@ contract Campaign {
         uint256 value,
         address payable recipient
     ) public onlyManager {
+        Request storage newRequest = requests.push();
+        newRequest.description = description;
+        newRequest.value = value;
+        newRequest.recipient =  recipient;
+        newRequest.complete = false;
+        newRequest.approvalCount = 0;
         numRequests++;
-        Request storage r = requests[numRequests];
-        r.description = description;
-        r.value = value;
-        r.recipient = recipient;
-        r.complete = false;
-        r.approvalCount = 0;
     }
 
     function approveRequest(uint256 index) public {

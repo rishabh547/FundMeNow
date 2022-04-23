@@ -3,7 +3,7 @@ import CampaignFactory from './build/CampaignFactory.json';
 
 const factoryInstance = new web3.eth.Contract(
     CampaignFactory.abi,
-    process.env.DEPLOYED_ADDRESS
+    process.env.GANACHE_DEPLOYED_ADDRESS
 );
 
 export default factoryInstance;
