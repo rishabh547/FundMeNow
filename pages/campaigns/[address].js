@@ -16,16 +16,22 @@ class CampaignShow extends Component {
 
     return {
       address: props.query.address,
-      minimumContribution: summary[0].toString(),
-      balance: summary[1].toString(),
-      requestsCount: summary[2].toString(),
-      approversCount: summary[3].toString(),
-      manager: summary[4],
+      name: summary[0],
+      category: summary[1],
+      description: summary[2],
+      minimumContribution: summary[3].toString(),
+      balance: summary[4].toString(),
+      requestsCount: summary[5].toString(),
+      approversCount: summary[6].toString(),
+      manager: summary[7],
     };
   }
 
   renderCards() {
     const {
+      name,
+      description,
+      category,
       balance,
       manager,
       minimumContribution,
@@ -35,6 +41,22 @@ class CampaignShow extends Component {
 
     const items = [
       {
+        header: name,
+        meta: "Campaign Name",
+        description: " ",
+        style: { overflowWrap: "break-word" },
+      },
+      {
+        header: category,
+        meta: "Campaign Category",
+        description: " ",
+      },
+      {
+        header: description,
+        meta: "Campaign Description",
+        description: " ",
+      },
+      {
         header: manager,
         meta: "Address of Manager",
         description:
@@ -42,10 +64,10 @@ class CampaignShow extends Component {
         style: { overflowWrap: "break-word" },
       },
       {
-        header: parseInt(minimumContribution, 16),
-        meta: "Minimum Contribution (wei)",
+        header: web3.utils.fromWei(minimumContribution, "ether").toString(),
+        meta: "Minimum Contribution (Ether)",
         description:
-          "You must contribute at least this much wei to become an approver",
+          "You must contribute at least this much ether to become an approver",
       },
       {
         header: parseInt(requestsCount, 16),
@@ -55,14 +77,14 @@ class CampaignShow extends Component {
       },
       {
         header: parseInt(approversCount, 16),
-        meta: "Number of Approvers",
+        meta: "Number of Contributers",
         description:
           "Number of people who have already donated to this campaign",
       },
       {
-        // header: web3.utils.fromWei(balance, 'ether'),
-        header: parseInt(balance, 16),
-        meta: "Campaign Balance (wei)",
+        // convert to ether
+        header: web3.utils.fromWei(balance, "ether").toString(),
+        meta: "Campaign Balance (Ether)",
         // meta: 'Campaign Balance (ether)',
         description:
           "The balance is how much money this campaign has left to spend.",

@@ -19,12 +19,13 @@ class RequestIndex extends Component {
           return campaign.methods.requests(index).call();
         })
     );
+    console.log("Requests: ", requests);
 
     return { address, requests, requestCount, approversCount };
   }
 
   renderRows() {
-    return this.props.requests.map((request, index) => {
+    return this.props?.requests?.map((request, index) => {
       return (
         <RequestRow
           key={index}
