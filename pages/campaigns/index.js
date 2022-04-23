@@ -3,7 +3,13 @@ import { Card, Button } from "semantic-ui-react";
 import factory from "../../ethereum/factory";
 import Layout from "../../components/Layout";
 import Link from "next/link";
-import "semantic-ui-css/semantic.min.css";
+import { useRouter } from "next/router";
+import Navbar from "../../components/Navbar";
+import GlassCard from "../../components/GlassCard";
+import CustomButon from "../../components/CustomButton";
+import styles from "../../styles/Campaign.module.css";
+
+// import "semantic-ui-css/semantic.min.css";
 
 class CampaignIndex extends Component {
   static async getInitialProps() {
@@ -12,42 +18,35 @@ class CampaignIndex extends Component {
     return { campaigns };
   }
 
-  renderCampaigns() {
-    const items = this.props?.campaigns?.map((address) => {
-      return {
-        header: address,
-        description: (
-          <Link href={`/campaigns/${address}`}>
-            <a>View Campaign</a>
-          </Link>
-        ),
-        fluid: true,
-      };
-    });
-
-    return <Card.Group items={items} />;
-  }
-
   render() {
     return (
-      <Layout>
-        <div>
-          <h3>Open Campaigns</h3>
+      <>
+        <Navbar></Navbar>
+        <Layout>
+          <div>
+            <div className={styles.title}>
+              <h1 className={styles.heading}>Open Campaigns</h1>
+            </div>
+            {/* Code for displaying the campaigns */}
+            <section className={styles.campaigns}>
+              {this.props.campaigns.map((address) => {
+                const campaign = {
+                  address: address,
+                  name: "Name",
+                  description: "Description",
+                };
+                return <GlassCard campaign={campaign} />;
+              })}
+            </section>
 
-          <Link href="/campaigns/new">
-            <a>
-              <Button
-                floated="right"
-                content="Create Campaign"
-                icon="add circle"
-                primary
-              />
-            </a>
-          </Link>
+            <div className={styles.buttonContainer}>
+              <CustomButon link="/campaigns/new">Create a Campaign</CustomButon>
+            </div>
 
-          {this.renderCampaigns()}
-        </div>
-      </Layout>
+            {/* {this.renderCampaigns()} */}
+          </div>
+        </Layout>
+      </>
     );
   }
 }

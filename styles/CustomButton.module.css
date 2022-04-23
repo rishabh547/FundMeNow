@@ -1,0 +1,33 @@
+.createButton {
+  display: inline-block;
+  background: transparent;
+  color: black;
+  font-size: 20px;
+  border: 2px solid black;
+  border-radius: 15px;
+  height: 60px;
+  width: 300px;
+}
+
+/* .createButton {
+  width: 300px;
+  height: 60px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 18px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 10px 10px 20px -10px rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: 0.5s ease;
+  word-wrap: break-word;
+} */
+
+.createButton:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  /* background: black; */
+}
