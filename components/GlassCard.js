@@ -4,10 +4,13 @@ import Link from "next/link";
 import styles from "../styles/GlassCard.module.css";
 
 export default (props) => {
+  let campaign;
+  ({ campaign } = props);
   return (
     <div class={styles.card}>
-      <p>MY CARD</p>
-      <p class={styles.card_number}>4242 8224 6317 0005</p>
+      <p>{campaign.name}</p>
+      <p>{campaign.description}</p>
+      {/* <p class={styles.card_number}>{campaign.address}</p> */}
     </div>
   );
 };

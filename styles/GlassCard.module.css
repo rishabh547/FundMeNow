@@ -2,6 +2,7 @@
   width: 500px;
   height: 180px;
   padding: 10px;
+  margin: 10px;
   border-radius: 20px;
   color: #fff;
   font-size: 18px;
@@ -11,6 +12,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   transition: 0.5s ease;
+  word-wrap: break-word;
 }
 
 .card_number {

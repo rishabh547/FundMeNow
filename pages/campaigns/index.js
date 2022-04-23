@@ -16,22 +16,6 @@ class CampaignIndex extends Component {
     return { campaigns };
   }
 
-  renderCampaigns() {
-    const items = this.props?.campaigns?.map((address) => {
-      return {
-        header: address,
-        description: (
-          <Link href={`/campaigns/${address}`}>
-            <a>View Campaign</a>
-          </Link>
-        ),
-        fluid: true,
-      };
-    });
-
-    return <Card.Group items={items} />;
-  }
-
   render() {
     return (
       <>
@@ -41,8 +25,22 @@ class CampaignIndex extends Component {
             <div className={styles.title}>
               <h1>Open Campaigns</h1>
             </div>
+            {/* Code for displaying the campaigns */}
             <div className={styles.campaigns}>
-              <GlassCard></GlassCard>
+              {this.props.campaigns.map((address) => {
+                const campaign = {
+                  address: address,
+                  name: "Name",
+                  description: "Description",
+                };
+                return (
+                  <Link href={`/campaigns/${campaign.address}`}>
+                    <a>
+                      <GlassCard campaign={campaign} />
+                    </a>
+                  </Link>
+                );
+              })}
             </div>
 
             <Link href="/campaigns/new">

@@ -2,3 +2,14 @@
   text-align: center;
   margin: 20px;
 }
+
+.campaigns {
+  height: 65vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  overflow-y: auto;
+}
+
+.campaigns::-webkit-scrollbar {
+  display: none;
+}
