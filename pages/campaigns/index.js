@@ -23,7 +23,7 @@ class CampaignIndex extends Component {
         <Layout>
           <div>
             <div className={styles.title}>
-              <h1>Open Campaigns</h1>
+              <h1 className={styles.heading}>Open Campaigns</h1>
             </div>
             {/* Code for displaying the campaigns */}
             <section className={styles.campaigns}>

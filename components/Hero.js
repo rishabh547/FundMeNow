@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import CustomButton from "./CustomButton";
 import styles from "../styles/Hero.module.css";
 import bannerImage from "../assets/undraw_ethereum_re_0m68.svg";
 
@@ -32,12 +33,14 @@ export default (props) => {
         </div>
       </div>
       <div className={styles.buttonContainer}>
-        <button className={styles.createButton} onClick={handleClick}>
+        <CustomButton func={handleClick}>Create Campaign</CustomButton>
+        <CustomButton func={handleClick2}>View Campaigns</CustomButton>
+        {/* <button className={styles.createButton} onClick={handleClick}>
           Create a Campaign
         </button>
         <button className={styles.createButton} onClick={handleClick2}>
           Support a Campaign
-        </button>
+        </button> */}
       </div>
     </>
   );

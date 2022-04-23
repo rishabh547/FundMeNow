@@ -3,6 +3,10 @@
   margin: 20px;
 }
 
+.heading {
+  font-size: 70px;
+}
+
 .campaigns {
   height: 65vh;
   display: grid;
