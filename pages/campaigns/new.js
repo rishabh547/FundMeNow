@@ -4,6 +4,7 @@ import Layout from "../../components/Layout";
 import factory from "../../ethereum/factory";
 import web3 from "../../ethereum/web3";
 import { useRouter } from "next/router";
+import Navbar from "../../components/Navbar";
 import styles from "../../styles/CampaignForm.module.css";
 
 const CampaignNew = () => {
@@ -44,7 +45,7 @@ const CampaignNew = () => {
           });
       });
 
-      router.push("/");
+      // router.push("/");
     } catch (err) {
       setErrorMessage(err.message);
     }
@@ -53,49 +54,74 @@ const CampaignNew = () => {
 
   return (
     <>
+      <Navbar></Navbar>
       <div className={styles.wrapper_form}>
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <div className={styles.card_glass}>
-          <div className={styles.card_glass_header}>
-            <div className={styles.glass_header_text}>Sign Up</div>
-          </div>
-          <div className={styles.glass_container}>
-            <div className={styles.form_glass_group}>
-              <input
-                type="text"
-                className={styles.form_glass_control}
-                placeholder="Username"
-              />
-            </div>
-            <div className={styles.form_glass_group}>
-              <input
-                type="text"
-                className={styles.form_glass_control}
-                placeholder="Email"
-              />
-            </div>
-            <div className={styles.form_glass_group}>
-              <input
-                type="password"
-                className={styles.form_glass_control}
-                placeholder="Password"
-                id="password"
-              />
-            </div>
-            <a href="#" className={styles.btn}>
-              Register
-            </a>
-          </div>
+        <div className={styles.title}>
+          <h1 className={styles.heading}>New Campaign</h1>
         </div>
+        {/* <span className={styles.circle} />
+        <span className={styles.circle} />
+        <span className={styles.circle} />
+        <span className={styles.circle} />
+        <span className={styles.circle} />
+        <span className={styles.circle} />
+        <span className={styles.circle} />
+        <span className={styles.circle} />
+        <span className={styles.circle} />
+        <span className={styles.circle} /> */}
+        <form onSubmit={onSubmit}>
+          <div className={styles.card_glass}>
+            {/* <div className={styles.card_glass_header}>
+              <div className={styles.glass_header_text}>New Campaign</div>
+            </div> */}
+            <div className={styles.glass_container}>
+              <div className={styles.form_glass_group}>
+                <input
+                  type="text"
+                  className={styles.form_glass_control}
+                  value={campaignName}
+                  onChange={(event) => setCampaignName(event.target.value)}
+                  placeholder="Campaign Name"
+                />
+              </div>
+              <div className={styles.form_glass_group}>
+                <input
+                  type="text"
+                  className={styles.form_glass_control}
+                  value={category}
+                  onChange={(event) => setCategory(event.target.value)}
+                  placeholder="Campaign Category"
+                />
+              </div>
+              <div className={styles.form_glass_group}>
+                <input
+                  type="text"
+                  className={styles.form_glass_control}
+                  value={description}
+                  onChange={(event) => setDescription(event.target.value)}
+                  placeholder="Campaign Description"
+                />
+              </div>
+              <div className={styles.form_glass_group}>
+                <input
+                  type="text"
+                  className={styles.form_glass_control}
+                  value={minimumContribution}
+                  onChange={(event) =>
+                    setMinimumContribution(event.target.value)
+                  }
+                  placeholder="Minimum Contribution (wei)"
+                />
+              </div>
+              {errorMessage && (
+                <Message error header="Oops!" content={errorMessage} />
+              )}
+              <div className={styles.buttonContainer}>
+                <button className={styles.btn}>Register</button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </>
   );
