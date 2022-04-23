@@ -4,8 +4,9 @@ pragma solidity >=0.5.0 <0.9.0;
 contract CampaignFactory {
     Campaign[] public deployedCampaigns;
 
-    function createCampaign(uint256 minimum) public {
-        Campaign newCampaign = new Campaign(minimum, msg.sender);
+    function createCampaign(string memory c_name, string memory category, string memory c_description, uint256 minimum) public {
+        Campaign newCampaign = new Campaign(c_name, category,c_description, minimum, msg.sender);
+
         deployedCampaigns.push(newCampaign);
     }
 
@@ -24,18 +25,25 @@ contract Campaign {
         mapping(address => bool) approvals;
     }
 
+    Request[] public requests;
     address public manager;
     uint256 public minimumContribution;
     mapping(address => bool) public approvers;
     uint256 public approversCount;
 
-
+    string public campaignName;
+    string public campaignCategory;
+    string public campaignDescription;
+    
     uint256 numRequests;
-    mapping(uint256 => Request) public requests;
+    // mapping(uint256 => Request) public requests;
 
-    constructor(uint256 minimum, address creator) {
+    constructor(string memory c_name, string memory category, string memory c_description, uint256 minimum, address creator) {
         manager = creator;
         minimumContribution = minimum;
+        campaignName = c_name;
+        campaignCategory = category;
+        campaignDescription = c_description;
     }
 
     function contribute() public payable {
@@ -52,12 +60,13 @@ contract Campaign {
         uint256 value,
         address payable recipient
     ) public onlyManager {
-        Request storage r = requests[numRequests++];
-        r.description = description;
-        r.value = value;
-        r.recipient = recipient;
-        r.complete = false;
-        r.approvalCount = 0;
+        Request storage newRequest = requests.push();
+        newRequest.description = description;
+        newRequest.value = value;
+        newRequest.recipient =  recipient;
+        newRequest.complete = false;
+        newRequest.approvalCount = 0;
+        numRequests++;
     }
 
     function approveRequest(uint256 index) public {
@@ -91,6 +100,9 @@ contract Campaign {
         public
         view
         returns (
+            string memory, 
+            string memory,
+            string memory,
             uint256,
             uint256,
             uint256,
@@ -99,6 +111,9 @@ contract Campaign {
         )
     {
         return (
+            campaignName,
+            campaignCategory,
+            campaignDescription,
             minimumContribution,
             address(this).balance,
             numRequests,

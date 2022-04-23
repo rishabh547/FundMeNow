@@ -6,6 +6,7 @@ import Link from 'next/link';
 import 'semantic-ui-css/semantic.min.css'
 
 class CampaignIndex extends Component {
+
   static async getInitialProps() {
     const campaigns = await factory.methods.getDeployedCampaigns().call();
     console.log("Deployed Campaigns: ", campaigns);
