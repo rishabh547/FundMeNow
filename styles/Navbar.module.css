@@ -1,0 +1,15 @@
+.nav {
+  /* background-color: #f2f2f2; */
+  height: 80px;
+  padding: 20px;
+  font-size: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.navLink {
+  padding: 0 10px 0 10px;
+  text-decoration: none;
+  color: black;
+}
