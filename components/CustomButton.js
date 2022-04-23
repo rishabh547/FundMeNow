@@ -5,8 +5,10 @@ import styles from "../styles/CustomButton.module.css";
 
 export default (props) => {
   return (
-    <button className={styles.createButton} onClick={props.func}>
-      {props.children}
-    </button>
+    <Link href={props.link}>
+      <a>
+        <button className={styles.createButton}>{props.children}</button>
+      </a>
+    </Link>
   );
 };

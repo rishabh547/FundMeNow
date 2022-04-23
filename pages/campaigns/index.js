@@ -3,6 +3,7 @@ import { Card, Button } from "semantic-ui-react";
 import factory from "../../ethereum/factory";
 import Layout from "../../components/Layout";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Navbar from "../../components/Navbar";
 import GlassCard from "../../components/GlassCard";
 import CustomButon from "../../components/CustomButton";
@@ -18,11 +19,6 @@ class CampaignIndex extends Component {
   }
 
   render() {
-    const handleClick = (e) => {
-      e.preventDefault();
-      router.push("/campaigns/new");
-    };
-
     return (
       <>
         <Navbar></Navbar>
@@ -44,7 +40,7 @@ class CampaignIndex extends Component {
             </section>
 
             <div className={styles.buttonContainer}>
-              <CustomButon func={handleClick}>Create a Campaign</CustomButon>
+              <CustomButon link="/campaigns/new">Create a Campaign</CustomButon>
             </div>
 
             {/* {this.renderCampaigns()} */}
