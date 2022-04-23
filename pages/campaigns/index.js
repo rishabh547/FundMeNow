@@ -5,6 +5,7 @@ import Layout from "../../components/Layout";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import GlassCard from "../../components/GlassCard";
+import CustomButon from "../../components/CustomButton";
 import styles from "../../styles/Campaign.module.css";
 
 // import "semantic-ui-css/semantic.min.css";
@@ -17,6 +18,11 @@ class CampaignIndex extends Component {
   }
 
   render() {
+    const handleClick = (e) => {
+      e.preventDefault();
+      router.push("/campaigns/new");
+    };
+
     return (
       <>
         <Navbar></Navbar>
@@ -37,16 +43,9 @@ class CampaignIndex extends Component {
               })}
             </section>
 
-            <Link href="/campaigns/new">
-              <a>
-                <Button
-                  floated="right"
-                  content="Create Campaign"
-                  icon="add circle"
-                  primary
-                />
-              </a>
-            </Link>
+            <div className={styles.buttonContainer}>
+              <CustomButon func={handleClick}>Create a Campaign</CustomButon>
+            </div>
 
             {/* {this.renderCampaigns()} */}
           </div>

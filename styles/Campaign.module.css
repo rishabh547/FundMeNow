@@ -17,3 +17,11 @@
 .campaigns::-webkit-scrollbar {
   display: none;
 }
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+}
