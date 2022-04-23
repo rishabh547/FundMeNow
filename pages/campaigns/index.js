@@ -26,7 +26,7 @@ class CampaignIndex extends Component {
               <h1>Open Campaigns</h1>
             </div>
             {/* Code for displaying the campaigns */}
-            <div className={styles.campaigns}>
+            <section className={styles.campaigns}>
               {this.props.campaigns.map((address) => {
                 const campaign = {
                   address: address,
@@ -41,7 +41,7 @@ class CampaignIndex extends Component {
                   </Link>
                 );
               })}
-            </div>
+            </section>
 
             <Link href="/campaigns/new">
               <a>
