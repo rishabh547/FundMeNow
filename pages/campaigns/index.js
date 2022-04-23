@@ -3,7 +3,11 @@ import { Card, Button } from "semantic-ui-react";
 import factory from "../../ethereum/factory";
 import Layout from "../../components/Layout";
 import Link from "next/link";
-import "semantic-ui-css/semantic.min.css";
+import Navbar from "../../components/Navbar";
+import GlassCard from "../../components/GlassCard";
+import styles from "../../styles/Campaign.module.css";
+
+// import "semantic-ui-css/semantic.min.css";
 
 class CampaignIndex extends Component {
   static async getInitialProps() {
@@ -30,24 +34,32 @@ class CampaignIndex extends Component {
 
   render() {
     return (
-      <Layout>
-        <div>
-          <h3>Open Campaigns</h3>
+      <>
+        <Navbar></Navbar>
+        <Layout>
+          <div>
+            <div className={styles.title}>
+              <h1>Open Campaigns</h1>
+            </div>
+            <div className={styles.campaigns}>
+              <GlassCard></GlassCard>
+            </div>
 
-          <Link href="/campaigns/new">
-            <a>
-              <Button
-                floated="right"
-                content="Create Campaign"
-                icon="add circle"
-                primary
-              />
-            </a>
-          </Link>
+            <Link href="/campaigns/new">
+              <a>
+                <Button
+                  floated="right"
+                  content="Create Campaign"
+                  icon="add circle"
+                  primary
+                />
+              </a>
+            </Link>
 
-          {this.renderCampaigns()}
-        </div>
-      </Layout>
+            {/* {this.renderCampaigns()} */}
+          </div>
+        </Layout>
+      </>
     );
   }
 }
