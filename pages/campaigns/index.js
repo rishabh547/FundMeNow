@@ -33,13 +33,7 @@ class CampaignIndex extends Component {
                   name: "Name",
                   description: "Description",
                 };
-                return (
-                  <Link href={`/campaigns/${campaign.address}`}>
-                    <a>
-                      <GlassCard campaign={campaign} />
-                    </a>
-                  </Link>
-                );
+                return <GlassCard campaign={campaign} />;
               })}
             </section>
 

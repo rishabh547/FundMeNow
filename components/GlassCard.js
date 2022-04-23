@@ -7,10 +7,14 @@ export default (props) => {
   let campaign;
   ({ campaign } = props);
   return (
-    <div class={styles.card}>
-      <p>{campaign.name}</p>
-      <p>{campaign.description}</p>
-      {/* <p class={styles.card_number}>{campaign.address}</p> */}
-    </div>
+    <Link href={`/campaigns/${campaign.address}`}>
+      <a>
+        <div class={styles.card}>
+          <p>{campaign.name}</p>
+          <p>{campaign.description}</p>
+          {/* <p class={styles.card_number}>{campaign.address}</p> */}
+        </div>
+      </a>
+    </Link>
   );
 };
