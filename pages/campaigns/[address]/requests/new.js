@@ -1,33 +1,32 @@
-import React, { useState } from 'react';
-import { Form, Button, Message, Input } from 'semantic-ui-react';
-import Campaign from '../../../../ethereum/campaign';
-import web3 from '../../../../ethereum/web3';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Layout from '../../../../components/Layout';
+import React, { useState } from "react";
+import { Form, Button, Message, Input } from "semantic-ui-react";
+import Campaign from "../../../../ethereum/campaign";
+import web3 from "../../../../ethereum/web3";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import Layout from "../../../../components/Layout";
 
 const RequestNew = ({ address }) => {
-
   const router = useRouter();
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [recipient, setRecipient] = useState('');
-  const [description, setDescription] = useState('');
-  const [value, setValue] = useState('');
+  const [recipent, setRecipient] = useState("");
+  const [description, setDescription] = useState("");
+  const [value, setValue] = useState("");
 
-  const onSubmit = async event => {
+  const onSubmit = async (event) => {
     event.preventDefault();
 
-    const campaign = Campaign(address);
+    const campaign = Campaign(props.address);
 
     setLoading(true);
-    setErrorMessage('');
+    setErrorMessage("");
 
     try {
       const accounts = await web3.eth.getAccounts();
       await campaign.methods
-        .createRequest(description, web3.utils.toWei(value, 'ether'), recipient)
+        .createRequest(description, web3.utils.toWei(value, "ether"), recipient)
         .send({ from: accounts[0] });
 
       router.push(`/campaigns/${address}/requests`);
@@ -48,9 +47,7 @@ const RequestNew = ({ address }) => {
           <label>Description</label>
           <Input
             value={description}
-            onChange={event =>
-              setDescription(event.target.value)
-            }
+            onChange={(event) => setDescription(event.target.value)}
           />
         </Form.Field>
 
@@ -58,9 +55,7 @@ const RequestNew = ({ address }) => {
           <label>Value in Ether</label>
           <Input
             value={value}
-            onChange={event =>
-              setValue(event.target.value)
-            }
+            onChange={(event) => setValue(event.target.value)}
           />
         </Form.Field>
 
@@ -68,9 +63,7 @@ const RequestNew = ({ address }) => {
           <label>Recipient</label>
           <Input
             value={recipient}
-            onChange={event =>
-              setRecipient(event.target.value)
-            }
+            onChange={(event) => setRecipient(event.target.value)}
           />
         </Form.Field>
 
@@ -81,13 +74,12 @@ const RequestNew = ({ address }) => {
       </Form>
     </Layout>
   );
-}
-
+};
 
 RequestNew.getInitialProps = ({ query }) => {
   const { address } = query;
 
   return { address };
-}
+};
 
 export default RequestNew;

@@ -1,9 +1,10 @@
-import React from 'react';
-import { Container } from 'semantic-ui-react';
-import Head from 'next/head';
-import Header from './Header';
+import React from "react";
+import { Container } from "semantic-ui-react";
+import Head from "next/head";
+import Header from "./Header";
+// import styles from "../styles/Layout.module.css";
 
-export default props => {
+export default (props) => {
   return (
     <Container>
       <Head>

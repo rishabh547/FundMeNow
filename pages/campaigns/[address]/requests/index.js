@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
-import { Button, Table } from 'semantic-ui-react';
-import Link from 'next/link';
-import Layout from '../../../../components/Layout';
-import Campaign from '../../../../ethereum/campaign';
-import RequestRow from '../../../../components/RequestRow';
+import React, { Component } from "react";
+import { Button, Table } from "semantic-ui-react";
+import Link from "next/link";
+import Layout from "../../../../components/Layout";
+import Campaign from "../../../../ethereum/campaign";
+import RequestRow from "../../../../components/RequestRow";
 
 class RequestIndex extends Component {
-
   static async getInitialProps(props) {
     const { address } = props.query;
     const campaign = Campaign(address);
@@ -20,13 +19,12 @@ class RequestIndex extends Component {
           return campaign.methods.requests(index).call();
         })
     );
-    console.log("Requests: ", requests);
 
     return { address, requests, requestCount, approversCount };
   }
 
   renderRows() {
-    return this.props?.requests?.map((request, index) => {
+    return this.props.requests.map((request, index) => {
       return (
         <RequestRow
           key={index}
