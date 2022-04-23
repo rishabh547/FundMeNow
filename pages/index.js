@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import { Card, Button } from 'semantic-ui-react';
-import factory from '../ethereum/factory';
-import Layout from '../components/Layout';
-import Link from 'next/link';
-import 'semantic-ui-css/semantic.min.css'
+import React, { Component } from "react";
+// import { Card, Button } from "semantic-ui-react";
+import factory from "../ethereum/factory";
+import Layout from "../components/Layout";
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import Link from "next/link";
+// import "semantic-ui-css/semantic.min.css";
 
 class CampaignIndex extends Component {
-
   static async getInitialProps() {
     const campaigns = await factory.methods.getDeployedCampaigns().call();
     console.log("Deployed Campaigns: ", campaigns);
@@ -14,7 +15,7 @@ class CampaignIndex extends Component {
   }
 
   renderCampaigns() {
-    const items = this.props?.campaigns?.map(address => {
+    const items = this.props?.campaigns?.map((address) => {
       return {
         header: address,
         description: (
@@ -22,33 +23,19 @@ class CampaignIndex extends Component {
             <a>View Campaign</a>
           </Link>
         ),
-        fluid: true
+        fluid: true,
       };
     });
 
-    return <Card.Group items={items} />;
+    return <div></div>;
   }
 
   render() {
     return (
-      <Layout>
-        <div>
-          <h3>Open Campaigns</h3>
-
-          <Link href="/campaigns/new">
-            <a>
-              <Button
-                floated="right"
-                content="Create Campaign"
-                icon="add circle"
-                primary
-              />
-            </a>
-          </Link>
-
-          {this.renderCampaigns()}
-        </div>
-      </Layout>
+      <>
+        <Navbar></Navbar>
+        <Hero></Hero>
+      </>
     );
   }
 }

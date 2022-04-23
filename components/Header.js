@@ -1,23 +1,24 @@
-import React from 'react';
-import { Menu } from 'semantic-ui-react';
-import Link from 'next/link';
+import React from "react";
+import { Menu } from "semantic-ui-react";
+import Link from "next/link";
 
 export default () => {
   return (
-    <Menu style={{ marginTop: '10px' }}>
-      <Link href="/">
-        <a className="item">CrowdCoin</a>
-      </Link>
+    // <Menu style={{ marginTop: '10px' }}>
+    //   <Link href="/">
+    //     <a className="item">CrowdCoin</a>
+    //   </Link>
 
-      <Menu.Menu position="right">
-        <Link href="/">
-          <a className="item">Campaigns</a>
-        </Link>
+    //   <Menu.Menu position="right">
+    //     <Link href="/">
+    //       <a className="item">Campaigns</a>
+    //     </Link>
 
-        <Link href="/campaigns/new">
-          <a className="item">+</a>
-        </Link>
-      </Menu.Menu>
-    </Menu>
+    //     <Link href="/campaigns/new">
+    //       <a className="item">+</a>
+    //     </Link>
+    //   </Menu.Menu>
+    // </Menu>
+    <h1>bam</h1>
   );
 };
