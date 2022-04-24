@@ -1,0 +1,55 @@
+.form_glass_group {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 0 35px;
+}
+
+input.form_glass_control {
+  padding: 13px 16px;
+  border: none;
+  max-width: 100%;
+  outline: none;
+  font-size: 1.5em;
+  color: black;
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1),
+    0px -2px 5px rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  margin: 15px auto;
+}
+input.form-glass-control::placeholder {
+  font-size: 0.7em;
+  color: black;
+}
+
+.btn {
+  padding: 10px 16px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  margin: 13px 33px;
+  display: inline-block;
+  color: white;
+  font-size: 1.5em;
+  background-color: #6777ef;
+  margin-left: 33px;
+  text-decoration: none;
+  height: 50px;
+  width: 300px;
+}
+
+.btn:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}

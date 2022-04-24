@@ -4,6 +4,9 @@ import Link from "next/link";
 import Layout from "../../../../components/Layout";
 import Campaign from "../../../../ethereum/campaign";
 import RequestRow from "../../../../components/RequestRow";
+import Navbar from "../../../../components/Navbar";
+import CustomButton from "../../../../components/CustomButton";
+import styles from "../../../../styles/Requests.module.css";
 
 class RequestIndex extends Component {
   static async getInitialProps(props) {
@@ -19,54 +22,74 @@ class RequestIndex extends Component {
           return campaign.methods.requests(index).call();
         })
     );
-    console.log("Requests: ", requests);
 
-    return { address, requests, requestCount, approversCount };
-  }
-
-  renderRows() {
-    return this.props?.requests?.map((request, index) => {
-      return (
-        <RequestRow
-          key={index}
-          id={index}
-          request={request}
-          address={this.props.address}
-          approversCount={this.props.approversCount}
-        />
-      );
+    const modifiedRequests = requests.map((request, index) => {
+      return {
+        id: index,
+        description: request.description,
+        value: request.value,
+        recipient: request.recipient,
+        complete: request.complete,
+        approvalCount: request.approvalCount,
+      };
     });
+
+    return { address, modifiedRequests, requestCount, approversCount };
   }
 
   render() {
     const { Header, Row, HeaderCell, Body } = Table;
 
     return (
-      <Layout>
-        <h3>Requests</h3>
-        <Link href={`/campaigns/${this.props.address}/requests/new`}>
-          <a>
-            <Button primary floated="right" style={{ marginBottom: 10 }}>
-              Add Request
-            </Button>
-          </a>
-        </Link>
-        <Table>
-          <Header>
-            <Row>
-              <HeaderCell>ID</HeaderCell>
-              <HeaderCell>Description</HeaderCell>
-              <HeaderCell>Amount</HeaderCell>
-              <HeaderCell>Recipient</HeaderCell>
-              <HeaderCell>Approval Count</HeaderCell>
-              <HeaderCell>Approve</HeaderCell>
-              <HeaderCell>Finalize</HeaderCell>
-            </Row>
-          </Header>
-          <Body>{this.renderRows()}</Body>
-        </Table>
-        <div>Found {this.props.requestCount} requests.</div>
-      </Layout>
+      <>
+        <Navbar></Navbar>
+        <Layout>
+          <div className={styles.title}>
+            <h1 className={styles.heading}>Requests</h1>
+          </div>
+          <div className={styles.buttonContainer}>
+            <CustomButton
+              link={`/campaigns/${this.props.address}/requests/new`}
+            >
+              New Request
+            </CustomButton>
+          </div>
+          <Table>
+            <Header>
+              <Row>
+                <HeaderCell>ID</HeaderCell>
+                <HeaderCell>Description</HeaderCell>
+                <HeaderCell>Amount</HeaderCell>
+                <HeaderCell>Recipient</HeaderCell>
+                <HeaderCell>Approval Count</HeaderCell>
+                <HeaderCell>Approve</HeaderCell>
+                <HeaderCell>Finalize</HeaderCell>
+              </Row>
+            </Header>
+            <Body>
+              {this.props.modifiedRequests.map((request) => {
+                return (
+                  <>
+                    <RequestRow
+                      key={request.id.toString()}
+                      id={request.id.toString()}
+                      // request={JSON.stringify(request)}
+                      description={request.description}
+                      value={request.value}
+                      recipient={request.recipient}
+                      approvalCount={request.approvalCount}
+                      complete={request.complete}
+                      approversCount={this.props.approversCount.toString()}
+                      address={this.props.address.toString()}
+                    />
+                  </>
+                );
+              })}
+            </Body>
+          </Table>
+          <div>Found {this.props.requestCount.toString()} requests.</div>
+        </Layout>
+      </>
     );
   }
 }
