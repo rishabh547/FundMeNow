@@ -1,0 +1,26 @@
+.title {
+  text-align: center;
+  margin: 20px;
+}
+
+.heading {
+  font-size: 70px;
+}
+
+.campaigns {
+  height: 65vh;
+  width: 50%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  overflow-y: auto;
+}
+
+.campaigns::-webkit-scrollbar {
+  display: none;
+}
+
+.container {
+  margin: 0 200px;
+  display: flex;
+  flex-direction: row;
+}

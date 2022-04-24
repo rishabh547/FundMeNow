@@ -4,7 +4,10 @@ import Layout from "../../components/Layout";
 import Campaign from "../../ethereum/campaign";
 import web3 from "../../ethereum/web3";
 import ContributeForm from "../../components/ContributeForm";
+import Navbar from "../../components/Navbar";
+import DetailCard from "../../components/DetailCard";
 import Link from "next/link";
+import styles from "../../styles/CampaignDetail.module.css";
 
 class CampaignShow extends Component {
   static async getInitialProps(props) {
@@ -96,9 +99,37 @@ class CampaignShow extends Component {
 
   render() {
     return (
-      <Layout>
-        <h3>Campaign Show</h3>
-        <Grid>
+      <>
+        <Navbar></Navbar>
+        <div className={styles.title}>
+          <h1 className={styles.heading}>Campaign Details</h1>
+        </div>
+        <main className={styles.container}>
+          <section className={styles.campaigns}>
+            <DetailCard></DetailCard>
+            <DetailCard></DetailCard>
+            <DetailCard></DetailCard>
+            <DetailCard></DetailCard>
+            <DetailCard></DetailCard>
+            <DetailCard></DetailCard>
+          </section>
+          <section>
+            <ContributeForm address={this.props.address} />
+            <Link href={`/campaigns/${this.props.address}/requests`}>
+              <a>
+                <Button primary>View Requests</Button>
+              </a>
+            </Link>
+          </section>
+        </main>
+      </>
+    );
+  }
+}
+
+export default CampaignShow;
+
+/* <Grid>
           <Grid.Row>
             <Grid.Column width={10}>{this.renderCards()}</Grid.Column>
 
@@ -116,10 +147,4 @@ class CampaignShow extends Component {
               </Link>
             </Grid.Column>
           </Grid.Row>
-        </Grid>
-      </Layout>
-    );
-  }
-}
-
-export default CampaignShow;
+        </Grid> */
