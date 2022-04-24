@@ -10,8 +10,10 @@ export default (props) => {
     <Link href={`/campaigns/${campaign.address}`}>
       <a>
         <div class={styles.card}>
-          <p>{campaign.name}</p>
-          <p>{campaign.description}</p>
+          <p>Name: {campaign.name}</p>
+          <p>Description: {campaign.description}</p>
+          <p>Category: {campaign.category}</p>
+          <p>Minimum Contribution: {campaign.minimumContribution} wei</p>
           {/* <p class={styles.card_number}>{campaign.address}</p> */}
         </div>
       </a>

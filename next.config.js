@@ -7,6 +7,7 @@ const nextConfig = {
     ROPSTEN_ENDPOINT: process.env.ROPSTEN_ENDPOINT,
     ROPSTEN_DEPLOYED_ADDRESS: process.env.ROPSTEN_DEPLOYED_ADDRESS,
     MORALIS_URL: process.env.MORALIS_URL,
+    MORALIS_SPEEDY_NODE_KEY: process.env.MORALIS_SPEEDY_NODE_KEY,
   },
   reactStrictMode: true,
 };
