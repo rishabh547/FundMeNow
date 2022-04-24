@@ -24,12 +24,19 @@ const RequestNew = ({ address }) => {
     setErrorMessage("");
 
     try {
-      const accounts = await web3.eth.getAccounts();
-      await campaign.methods
-        .createRequest(description, web3.utils.toWei(value, "ether"), recipient)
-        .send({ from: accounts[0] });
+      web3.eth.requestAccounts().then(async (res) => {
+        const accounts = res;
 
-      router.push(`/campaigns/${address}/requests`);
+        await campaign.methods
+          .createRequest(
+            description,
+            web3.utils.toWei(value, "ether"),
+            recipient
+          )
+          .send({ from: accounts[0] });
+
+        router.push(`/campaigns/${address}/requests`);
+      });
     } catch (err) {
       setErrorMessage(err.message);
     }
