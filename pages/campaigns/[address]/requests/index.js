@@ -20,23 +20,19 @@ class RequestIndex extends Component {
           return campaign.methods.requests(index).call();
         })
     );
-    console.log("Requests: ", requests);
 
-    return { address, requests, requestCount, approversCount };
-  }
-
-  renderRows() {
-    return this.props?.requests?.map((request, index) => {
-      return (
-        <RequestRow
-          key={index}
-          id={index}
-          request={request}
-          address={this.props.address}
-          approversCount={this.props.approversCount}
-        />
-      );
+    const modifiedRequests = requests.map((request, index) => {
+      return {
+        id: index,
+        description: request.description,
+        value: request.value,
+        recipient: request.recipient,
+        complete: request.complete,
+        approvalCount: request.approvalCount,
+      };
     });
+
+    return { address, modifiedRequests, requestCount, approversCount };
   }
 
   render() {
@@ -64,9 +60,30 @@ class RequestIndex extends Component {
               <HeaderCell>Finalize</HeaderCell>
             </Row>
           </Header>
-          <Body>{this.renderRows()}</Body>
+          <Body>
+            {
+              this.props.modifiedRequests.map(request => {
+                return (
+                  <>
+                    <RequestRow
+                      key={request.id.toString()}
+                      id={request.id.toString()}
+                      // request={JSON.stringify(request)}
+                      description={request.description}
+                      value={request.value}
+                      recipient={request.recipient}
+                      approvalCount={request.approvalCount}
+                      complete={request.complete}
+                      approversCount={this.props.approversCount.toString()}
+                      address={this.props.address.toString()}
+                    />
+                  </>
+                );
+              })
+            }
+          </Body>
         </Table>
-        <div>Found {this.props.requestCount} requests.</div>
+        <div>Found {this.props.requestCount.toString()} requests.</div>
       </Layout>
     );
   }
