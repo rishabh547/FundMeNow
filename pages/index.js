@@ -35,6 +35,7 @@ class CampaignIndex extends Component {
       <>
         <Navbar></Navbar>
         <Hero></Hero>
+        <br />
       </>
     );
   }
