@@ -6,6 +6,7 @@ import web3 from "../../ethereum/web3";
 import ContributeForm from "../../components/ContributeForm";
 import Navbar from "../../components/Navbar";
 import DetailCard from "../../components/DetailCard";
+import CustomButton from "../../components/CustomButton";
 import Link from "next/link";
 import styles from "../../styles/CampaignDetail.module.css";
 
@@ -28,62 +29,6 @@ class CampaignShow extends Component {
       approversCount: summary[6].toString(),
       manager: summary[7],
     };
-  }
-
-  renderCards() {
-    // const items = [
-    //   {
-    //     header: name,
-    //     meta: "Campaign Name",
-    //     description: " ",
-    //     style: { overflowWrap: "break-word" },
-    //   },
-    //   {
-    //     header: category,
-    //     meta: "Campaign Category",
-    //     description: " ",
-    //   },
-    //   {
-    //     header: description,
-    //     meta: "Campaign Description",
-    //     description: " ",
-    //   },
-    //   {
-    //     header: manager,
-    //     meta: "Address of Manager",
-    //     description:
-    //       "The manager created this campaign and can create requests to withdraw money",
-    //     style: { overflowWrap: "break-word" },
-    //   },
-    //   {
-    //     header: web3.utils.fromWei(minimumContribution, "ether").toString(),
-    //     meta: "Minimum Contribution (Ether)",
-    //     description:
-    //       "You must contribute at least this much ether to become an approver",
-    //   },
-    //   {
-    //     header: parseInt(requestsCount, 16),
-    //     meta: "Number of Requests",
-    //     description:
-    //       "A request tries to withdraw money from the contract. Requests must be approved by approvers",
-    //   },
-    //   {
-    //     header: parseInt(approversCount, 16),
-    //     meta: "Number of Contributers",
-    //     description:
-    //       "Number of people who have already donated to this campaign",
-    //   },
-    //   {
-    //     // convert to ether
-    //     header: web3.utils.fromWei(balance, "ether").toString(),
-    //     meta: "Campaign Balance (Ether)",
-    //     // meta: 'Campaign Balance (ether)',
-    //     description:
-    //       "The balance is how much money this campaign has left to spend.",
-    //   },
-    // ];
-
-    return <Card.Group items={items} />;
   }
 
   render() {
@@ -129,11 +74,11 @@ class CampaignShow extends Component {
           </section>
           <section>
             <ContributeForm address={this.props.address} />
-            <Link href={`/campaigns/${this.props.address}/requests`}>
-              <a>
-                <Button primary>View Requests</Button>
-              </a>
-            </Link>
+            <div className={styles.buttonContainer}>
+              <CustomButton link={`/campaigns/${this.props.address}/requests`}>
+                View Requests
+              </CustomButton>
+            </div>
           </section>
         </main>
       </>
