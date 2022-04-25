@@ -6,6 +6,7 @@ import web3 from "../../ethereum/web3";
 import { useRouter } from "next/router";
 import Navbar from "../../components/Navbar";
 import styles from "../../styles/CampaignForm.module.css";
+import campaign from "../../ethereum/campaign";
 
 const CampaignNew = () => {
   const router = useRouter();
@@ -29,6 +30,32 @@ const CampaignNew = () => {
       // const accounts = await web3.eth.getAccounts();
       web3.eth.requestAccounts().then(async (res) => {
         const accounts = res;
+
+        // validate the input
+
+        if (campaignName.trim().length === 0) {
+          setErrorMessage("Campaign Name cannot be empty");
+          setLoading(false);
+          return;
+        }
+
+        if (description.trim().length === 0) {
+          setErrorMessage("Description cannot be empty");
+          setLoading(false);
+          return;
+        }
+
+        if (category.trim().length === 0) {
+          setErrorMessage("Category cannot be empty");
+          setLoading(false);
+          return;
+        }
+
+        if (minimumContribution <= 0) {
+          setErrorMessage("Minimum Contribution must be greater than 0");
+          setLoading(false);
+          return;
+        }
 
         await factory.methods
           .createCampaign(

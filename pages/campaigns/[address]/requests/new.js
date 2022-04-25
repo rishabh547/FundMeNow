@@ -20,6 +20,20 @@ const RequestNew = ({ address }) => {
   const onSubmit = async (event) => {
     event.preventDefault();
 
+    // validate the input
+    if (!recipient || !description || !value) {
+      setErrorMessage("Please enter all fields");
+      return;
+    }
+    if (!web3.utils.isAddress(recipient)) {
+      setErrorMessage("Please enter a valid address");
+      return;
+    }
+    if (value <= 0) {
+      setErrorMessage("Please enter a valid amount");
+      return;
+    }
+
     const campaign = Campaign(address);
 
     setLoading(true);
@@ -29,6 +43,15 @@ const RequestNew = ({ address }) => {
       web3.eth.requestAccounts().then(async (res) => {
         const accounts = res;
 
+        // check if the user is the contracts manager
+        const campaignDetails = await campaign.methods.getSummary().call();
+        const manager = campaignDetails[7].toString();
+        if (accounts[0] !== manager) {
+          setErrorMessage("You are not the manager of this campaign, Only managers can create a request");
+          setLoading(false);
+          return;
+        }
+
         await campaign.methods
           .createRequest(
             description,
@@ -37,6 +60,8 @@ const RequestNew = ({ address }) => {
           )
           .send({ from: accounts[0] });
 
+
+        alert("Request created!");
         router.push(`/campaigns/${address}/requests`);
       });
     } catch (err) {
@@ -83,7 +108,7 @@ const RequestNew = ({ address }) => {
                   className={styles.form_glass_control}
                   value={value}
                   onChange={(event) => setValue(event.target.value)}
-                  placeholder="Request Amount"
+                  placeholder="Request Amount in ether"
                 />
               </div>
               <div className={styles.form_glass_group}>

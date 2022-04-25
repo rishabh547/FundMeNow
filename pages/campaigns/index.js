@@ -15,7 +15,7 @@ import Campaign from "../../ethereum/campaign";
 class CampaignIndex extends Component {
   static async getInitialProps() {
     const campaigns = await factory.methods.getDeployedCampaigns().call();
-    console.log("Deployed Campaigns: ", campaigns);
+    // console.log("Deployed Campaigns: ", campaigns);
 
     let campaignDetails = [];
 
