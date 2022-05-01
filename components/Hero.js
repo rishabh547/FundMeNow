@@ -13,7 +13,7 @@ export default (props) => {
           <h1>FundMe</h1>
           <h1>Now</h1>
           <div className={styles.content}>
-            <h5>Fund your dreams on the blockchain</h5>
+            <h5>Fund your dreams on the blockchain...</h5>
           </div>
         </div>
         <div className={styles.banner}>
@@ -22,10 +22,10 @@ export default (props) => {
           </div>
         </div>
       </div>
-      <div className={styles.buttonContainer}>
+      {/* <div className={styles.buttonContainer}>
         <CustomButton link="/campaigns/new">Create Campaign</CustomButton>
         <CustomButton link="/campaigns">View Campaigns</CustomButton>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -18,7 +18,13 @@ class CampaignIndex extends Component {
     // console.log("Deployed Campaigns: ", campaigns);
 
     let campaignDetails = [];
-
+    //Need to handle Runtime error here
+    //What if Campaign length is zero?
+    if (campaigns.length === 0) {
+      setErrorMessage("Campaign Size is zero");
+      setLoading(false);
+      return;
+    }
     for (let i = 0; i < campaigns.length; i++) {
       const campaign = Campaign(campaigns[i]);
       const summary = await campaign.methods.getSummary().call();
