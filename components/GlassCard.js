@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-import styles from "../styles/GlassCard.module.css";
 
 export default (props) => {
   let campaign;
@@ -9,7 +8,7 @@ export default (props) => {
   return (
     <Link href={`/campaigns/${campaign.address}`}>
       <a>
-        <div class={styles.card}>
+        <div>
           <p>Name: {campaign.name}</p>
           <p>Description: {campaign.description}</p>
           <p>Category: {campaign.category}</p>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import styles from "../styles/Navbar.module.css";
 
 export default (props) => {
   const [displayText, setDisplayText] = useState("Connect Wallet");
@@ -26,7 +25,7 @@ export default (props) => {
   };
 
   return (
-    <div className={styles.nav}>
+    <div >
       <Link href="/">
         <a>
           <div className={styles.navLink}>
@@ -37,20 +36,20 @@ export default (props) => {
 
       <Link href="/campaigns">
         <a>
-          <div className={styles.navLink}>
+          <div >
             <h3>Campaigns</h3>
           </div>
         </a>
       </Link>
       <Link href="campaigns/new">
         <a>
-          <div className={styles.navLink}>
+          <div >
             <h3>Create</h3>
           </div>
         </a>
       </Link>
-      <div style={{ marginTop: "20px" }} className={styles.buttonContainer}>
-        <button className={styles.connectWB} onClick={connectWallet}>{displayText}</button>
+      <div style={{ marginTop: "20px" }} >
+        <button  onClick={connectWallet}>{displayText}</button>
       </div>
     </div >
   );

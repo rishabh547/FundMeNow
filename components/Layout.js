@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "semantic-ui-react";
 import Head from "next/head";
-import Header from "./Header";
+import Header from "./NavbarNew";
 // import styles from "../styles/Layout.module.css";
 
 export default (props) => {

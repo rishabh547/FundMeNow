@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import Navbar from "../../components/Navbar";
 import GlassCard from "../../components/GlassCard";
 import CustomButon from "../../components/CustomButton";
-import styles from "../../styles/Campaign.module.css";
+// import styles from "../../styles/Campaign.module.css";
 import Campaign from "../../ethereum/campaign";
 
 // import "semantic-ui-css/semantic.min.css";

@@ -3,7 +3,6 @@ import { Form, Input, Message, Button } from "semantic-ui-react";
 import Campaign from "../ethereum/campaign";
 import web3 from "../ethereum/web3";
 import { useRouter } from "next/router";
-import styles from "../styles/ContributeForm.module.css";
 
 const ContributeForm = (props) => {
   const router = useRouter();
@@ -44,22 +43,27 @@ const ContributeForm = (props) => {
   };
 
   return (
-    <Form onSubmit={onSubmit} error={!!errorMessage}>
-      <div className={styles.form_glass_group}>
-        <input
-          type="text"
-          className={styles.form_glass_control}
-          placeholder="Contribution in ether"
-          value={value}
-          onChange={(event) => setValue(event.target.value)}
-        />
-      </div>
-      {errorMessage && <Message error header="Oops!" content={errorMessage} />}
-      <div className={styles.buttonContainer}>
-        <button className={styles.btn}>Contribute</button>
-      </div>
-    </Form>
-  );
+    <>Contribute Form Here</>
+  )
 };
+
+//   return (
+//     <Form onSubmit={onSubmit} error={!!errorMessage}>
+//       <div className={styles.form_glass_group}>
+//         <input
+//           type="text"
+//           className={styles.form_glass_control}
+//           placeholder="Contribution in ether"
+//           value={value}
+//           onChange={(event) => setValue(event.target.value)}
+//         />
+//       </div>
+//       {errorMessage && <Message error header="Oops!" content={errorMessage} />}
+//       <div className={styles.buttonContainer}>
+//         <button className={styles.btn}>Contribute</button>
+//       </div>
+//     </Form>
+//   );
+// };
 
 export default ContributeForm;
