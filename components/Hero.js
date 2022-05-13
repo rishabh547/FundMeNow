@@ -14,7 +14,7 @@ export default (props) => {
           <div className=" border-0 rounded-lg p-2 mx-16 text-white " style={{ "fontSize": "150px", "width": "90%" }
           }>
             <p className="">Fund Me</p>
-            <b className="text-black">Now</b>
+            <b className="text-cyan-500">Now</b>
           </div>
           <div className=" border-0 rounded-lg p-12 mx-20 text-white" style={{ "fontSize": "80px", "width": "80%" }
           }>
@@ -36,7 +36,7 @@ export default (props) => {
             <a href="/campaigns" class="max-w-7xl mx-auto shadow-lg shadow-transparent rounded-lg mr-20">
               <div class="relative group">
                 <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-black rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                <div class="bg-transparent opacity-80 hover:text-black relative px-7 py-6 hover:bg-white transition duration-200 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6 ">
+                <div class="bg-opacity-70 backdrop-filter backdrop-blur-lg bg-black hover:text-black relative px-7 py-6 hover:bg-white transition duration-200 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6 ">
                   <svg class="w-8 h-8 text-cyan-500" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 6.75C6.75 5.64543 7.64543 4.75 8.75 4.75H15.25C16.3546 4.75 17.25 5.64543 17.25 6.75V19.25L12 14.75L6.75 19.25V6.75Z"></path>
                   </svg>

@@ -26,7 +26,7 @@ function NavbarNew() {
 
 
     return (
-        <nav class=" shadow-gray-800 shadow-lg" >
+        <nav class=" shadow-gray-800 shadow-lg bg-transparent opacity-90 backdrop-blur-xl" >
             <div class="max-w-8xl mx-auto px-16">
                 <div class="flex justify-between">
 
@@ -51,9 +51,9 @@ function NavbarNew() {
                         </Link>
                     </div>
 
-                    <button className='bg-transparent hover:bg-white text-gray-200 font-semibold hover:text-cyan-500 py-2  border-gray-500 hover:border-transparent px-6 flex my-2 border rounded-lg items-center' onClick={connectWallet}>Connect Wallet</button>
+                    <button className='bg-opacity-25 backdrop-filter backdrop-blur-lg bg-black hover:bg-white text-gray-200 font-semibold hover:text-cyan-500 py-2  border-white hover:border-transparent px-6 flex my-2 border rounded-lg items-center' onClick={connectWallet}>Connect Wallet</button>
 
-                    <div class="md:hidden flex items-center">
+                    <div class="md:hidden flex items-center" >
                         <button class="outline-none menu-button">
                             <svg class="w-6 h-6 text-gray-500" x-show="! showMenu" fill="none" stroke-linecap="round"
                                 stroke-linejoin="round" stroke-width="2" viewBox="0 00 24 24" stroke="currentColor"><path d="m4 6h16M4 12h16M4 18h16"></path>
