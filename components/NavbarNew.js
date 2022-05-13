@@ -1,11 +1,33 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 
 function NavbarNew() {
 
+    const [displayText, setDisplayText] = useState("Connect Wallet");
+
+    const isMetaMaskInstalled = () => {
+        //Have to check the ethereum binding on the window object to see if it's installed
+        const { ethereum } = window;
+        return Boolean(ethereum && ethereum.isMetaMask);
+    };
+
+    const connectWallet = async (e) => {
+        e.preventDefault();
+        if (isMetaMaskInstalled()) {
+            const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+            if (accounts[0]) {
+                alert("Connected to MetaMask");
+                setDisplayText("Connected");
+            }
+        } else {
+            alert("Please install MetaMask");
+        }
+    };
+
+
     return (
-        <nav class="bg-black shadow-gray-800 shadow-lg" >
-            <div class="max-w-6xl mx-auto px-4">
+        <nav class=" shadow-gray-800 shadow-lg" >
+            <div class="max-w-8xl mx-auto px-16">
                 <div class="flex justify-between">
 
                     <div class="flex space-x-7 px-3">
@@ -27,10 +49,9 @@ function NavbarNew() {
                         <Link href="/">
                             <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300">About</p>
                         </Link>
-                        <Link href="/">
-                            <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300">  Contact Us</p>
-                        </Link>
                     </div>
+
+                    <button className='bg-transparent hover:bg-white text-gray-200 font-semibold hover:text-cyan-500 py-2  border-gray-500 hover:border-transparent px-6 flex my-2 border rounded-lg items-center' onClick={connectWallet}>Connect Wallet</button>
 
                     <div class="md:hidden flex items-center">
                         <button class="outline-none menu-button">

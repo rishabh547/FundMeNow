@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { Form, Button, Input, Message } from "semantic-ui-react";
-import Layout from "../../components/Layout";
 import factory from "../../ethereum/factory";
 import web3 from "../../ethereum/web3";
 import { useRouter } from "next/router";
 import Navbar from "../../components/Navbar";
-import styles from "../../styles/CampaignForm.module.css";
 import campaign from "../../ethereum/campaign";
 
 const CampaignNew = () => {

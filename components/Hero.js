@@ -7,19 +7,19 @@ import svgImg from '../assets/undraw_Ethereum_re_0m68.svg';
 
 export default (props) => {
   return (
-    <div className="bg-black flex-col align-items-center justify-items-center ">
+    <div className=" flex-col align-items-center justify-items-center ">
 
       <div className="flex ">
         <div>
           <div className=" border-0 rounded-lg p-2 mx-16 text-white " style={{ "fontSize": "150px", "width": "90%" }
           }>
             <p className="">Fund Me</p>
-            <b className="text-cyan-500 animate-pulse">Now</b>
+            <b className="text-black">Now</b>
           </div>
           <div className=" border-0 rounded-lg p-12 mx-20 text-white" style={{ "fontSize": "80px", "width": "80%" }
           }>
-            <div className="text-4xl ">
-              <b>Raise Funds</b>  Or <b>Fund A Campaign</b> Through The <b className="text-cyan-500">Trust</b>  And <b className="text-cyan-500">Security</b>  Of Blockchain
+            <div className="text-4xl text-gray-300">
+              <b className="text-white">Raise Funds</b>  Or <b className="text-white">Fund A Campaign</b> Through The <b className="text-cyan-200">Trust</b>  And <b className="text-cyan-200">Security</b>  Of <b className="text-white">Blockchain</b>
             </div>
 
             {/* <Image src={svgImg} width={500} height={480} /> */}
@@ -31,7 +31,7 @@ export default (props) => {
 
         {/* text */}
         <div className="flex flex-col-reverse text-white font-extralight max-w-2xl justify-end align-center">
-          <div class=" bg-black flex align-center relative overflow-hidden sm:py-12 ">
+          <div class="  flex align-center relative overflow-hidden sm:py-12 ">
 
             <a href="/campaigns" class="max-w-7xl mx-auto shadow-lg shadow-transparent rounded-lg mr-20">
               <div class="relative group">
@@ -48,7 +48,7 @@ export default (props) => {
               </div>
             </a>
 
-            <a href="/campaigns" class="max-w-7xl mx-auto shadow-lg shadow-white rounded-lg mr-20">
+            <a href="/campaigns/new" class="max-w-7xl mx-auto shadow-lg shadow-white rounded-lg mr-20">
               <div class="relative group">
                 <div class="absolute -inset-1 bg-gradient-to-r from-black to-cyan-500 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
                 <div class="relative px-7 py-6 bg-white opacity-80 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">

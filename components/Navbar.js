@@ -49,7 +49,7 @@ export default (props) => {
         </a>
       </Link>
       <div style={{ marginTop: "20px" }} >
-        <button  onClick={connectWallet}>{displayText}</button>
+        <button onClick={connectWallet}>{displayText}</button>
       </div>
     </div >
   );
