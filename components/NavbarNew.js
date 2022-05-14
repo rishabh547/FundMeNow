@@ -40,14 +40,17 @@ function NavbarNew() {
                     </div>
 
                     <div class="hidden md:flex items-center space-x-1">
-                        <Link href="/">
+                        <Link href="/" className="">
                             <p className="py-4 px-4 text-gray-400 border-b-4 border-cyan-500 font-semibold">Home</p>
                         </Link>
                         <Link href="/campaigns">
                             <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300">Campaigns</p>
                         </Link>
-                        <Link href="/">
-                            <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300">About</p>
+                        <Link href="/aboutUs">
+                            <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300">AboutUs</p>
+                        </Link>
+                        <Link href="/campaigns/new">
+                            <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300">Raise Funding</p>
                         </Link>
                     </div>
 

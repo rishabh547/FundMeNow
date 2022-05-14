@@ -1,16 +1,10 @@
 import React, { Component } from "react";
-import { Card, Button } from "semantic-ui-react";
 import factory from "../../ethereum/factory";
-import Layout from "../../components/Layout";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/NavbarNew";
 import GlassCard from "../../components/GlassCard";
-import CustomButon from "../../components/CustomButton";
-// import styles from "../../styles/Campaign.module.css";
 import Campaign from "../../ethereum/campaign";
-
-// import "semantic-ui-css/semantic.min.css";
 
 class CampaignIndex extends Component {
   static async getInitialProps() {
@@ -47,30 +41,21 @@ class CampaignIndex extends Component {
 
   render() {
     return (
-      <>
+      <div className="bg-gradient-to-br from-black via-gray-900 to-cyan-500 w-full h-screen text-white">
         <Navbar></Navbar>
-        <Layout>
-          <div>
-            <div className={styles.title}>
-              <h1 className={styles.heading}>Open Campaigns</h1>
-            </div>
-            {/* Code for displaying the campaigns */}
-            <section className={styles.campaigns}>
-              {
-                this.props.campaignDetails.map((campaign) => {
-                  return <GlassCard campaign={campaign} />;
-                })
-              }
-            </section>
-
-            <div className={styles.buttonContainer}>
-              <CustomButon link="/campaigns/new">Create a Campaign</CustomButon>
-            </div>
-
-            {/* {this.renderCampaigns()} */}
+        <div className="">
+          <div className="flex align-center justify-between">
+            <h1 className="text-4xl mt-6 mx-12">Open Campaigns</h1>
           </div>
-        </Layout>
-      </>
+          <section className="bg-black bg-opacity-50 backdrop-blur-lg backdrop-filter rounded-xl grid grid-cols-3 gap-1 p-16 pb-6 overflow-y-auto scrollbar-none mx-20 my-4">
+            {
+              this.props.campaignDetails.map((campaign) => {
+                return <GlassCard campaign={campaign} />;
+              })
+            }
+          </section>
+        </div>
+      </div>
     );
   }
 }
