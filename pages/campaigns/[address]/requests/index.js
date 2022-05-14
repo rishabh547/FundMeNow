@@ -7,7 +7,7 @@ import Navbar from "../../../../components/NavbarNew";
 
 class RequestIndex extends Component {
   static async getInitialProps(props) {
-    const { address } = props.query;
+    var { address } = props.query;
     const campaign = Campaign(address);
     const requestCount = await campaign.methods.getRequestsCount().call();
     const approversCount = await campaign.methods.approversCount().call();
@@ -41,17 +41,18 @@ class RequestIndex extends Component {
       <div className="bg-gradient-to-br from-black via-gray-900 to-cyan-500 w-full h-screen text-white">
         <Navbar></Navbar>
         <div className="flex flex-col align-middle justify-center">
-          <div className="">
-            <h1 className="">Requests</h1>
+          <div className="flex justify-between align-middle">
+            <h1 className="text-4xl p-6 mx-8 my-2">Requests</h1>
+            <div className="mt-6 mx-20">
+              <Link
+                href={`/campaigns/${this.props.address}/requests/new`} className=""
+              >
+                <p className="flex justify-center bg-white text-black hover:text-cyan-800 hover:shadow-lg hover:shadow-cyan-500 cursor-pointer w-32 p-2 rounded-lg m-4"><b className="text-cyan-500">Add </b> &#160; Request</p>
+              </Link>
+            </div>
           </div>
-          <div className="">
-            <Link
-              href={`/campaigns/${this.props.address}/requests/new`} className="bg-white text-black rounded-lg p-4"
-            >
-              Add Request
-            </Link>
-          </div>
-          <Table className='bg-white text-black rounded-lg m-8'>
+
+          <Table className='bg-white text-black rounded-lg m-8 mx-36'>
             <Header>
               <Row>
                 <HeaderCell>ID</HeaderCell>
@@ -84,7 +85,7 @@ class RequestIndex extends Component {
               })}
             </Body>
           </Table>
-          <div>Found {this.props.requestCount.toString()} requests.</div>
+          {/* <div className="m-16">Found {parseInt(this.props.requestCount).toString()} requests.</div> */}
         </div>
       </div>
     );

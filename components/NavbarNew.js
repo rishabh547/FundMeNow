@@ -54,7 +54,7 @@ function NavbarNew() {
                         </Link>
                     </div>
 
-                    <button className='bg-opacity-25 backdrop-filter backdrop-blur-lg bg-black hover:bg-white text-gray-200 font-semibold hover:text-cyan-500 py-2  border-white hover:border-transparent px-6 flex my-2 border rounded-lg items-center' onClick={connectWallet}>Connect Wallet</button>
+                    <button className='bg-opacity-25 backdrop-filter backdrop-blur-lg bg-black hover:bg-white text-gray-200 font-semibold hover:text-cyan-500 py-2  border-white hover:border-transparent px-6 flex my-2 border rounded-lg items-center' onClick={connectWallet}>{displayText}</button>
 
                     <div class="md:hidden flex items-center" >
                         <button class="outline-none menu-button">

@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import { Card, Grid, Button } from "semantic-ui-react";
-import Layout from "../../components/Layout";
 import Campaign from "../../ethereum/campaign";
 import web3 from "../../ethereum/web3";
 import ContributeForm from "../../components/ContributeForm";
 import Navbar from "../../components/NavbarNew";
-import DetailCard from "../../components/DetailCard";
-import CustomButton from "../../components/CustomButton";
 import Link from "next/link";
 
 class CampaignShow extends Component {

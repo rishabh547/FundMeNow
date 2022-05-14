@@ -14,7 +14,7 @@ class CampaignIndex extends Component {
     let campaignDetails = [];
     //Need to handle Runtime error here
     //What if Campaign length is zero?
-    if (campaigns.length === 0) {
+    if (campaigns?.length === 0) {
       setErrorMessage("Campaign Size is zero");
       setLoading(false);
       return;
