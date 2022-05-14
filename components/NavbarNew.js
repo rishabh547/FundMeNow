@@ -31,7 +31,7 @@ function NavbarNew() {
                 <div class="flex justify-between">
 
                     <div class="flex space-x-7 px-3">
-                        <a href="#" class="flex items-center py-4 px-2">
+                        <a href="/" class="flex items-center py-4 px-2">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Uber_App_Icon.svg/2048px-Uber_App_Icon.svg.png" alt="Logo" class="h-8 w-8 mr-2" />
                             <span class="font-semibold text-gray-200 text-lg mx-4">
                                 FundMeNow

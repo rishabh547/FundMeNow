@@ -3,8 +3,9 @@ import { Form, Button, Input, Message } from "semantic-ui-react";
 import factory from "../../ethereum/factory";
 import web3 from "../../ethereum/web3";
 import { useRouter } from "next/router";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/NavbarNew";
 import campaign from "../../ethereum/campaign";
+import Link from 'next/link';
 
 const CampaignNew = () => {
   const router = useRouter();
@@ -30,7 +31,6 @@ const CampaignNew = () => {
         const accounts = res;
 
         // validate the input
-
         if (campaignName.trim().length === 0) {
           setErrorMessage("Campaign Name cannot be empty");
           setLoading(false);
@@ -78,139 +78,83 @@ const CampaignNew = () => {
   };
 
   return (
-    <>
+    <div className="bg-gradient-to-br from-black via-gray-900 to-cyan-500 w-full h-screen text-white">
       <Navbar></Navbar>
-      <div className={styles.wrapper_form}>
-        <div className={styles.title}>
-          <h1 className={styles.heading}>New Campaign</h1>
-        </div>
-        {/* <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} /> */}
-        <form onSubmit={onSubmit}>
-          <div className={styles.card_glass}>
-            {/* <div className={styles.card_glass_header}>
-              <div className={styles.glass_header_text}>New Campaign</div>
-            </div> */}
-            <div className={styles.glass_container}>
-              <div className={styles.form_glass_group}>
-                <input
-                  type="text"
-                  className={styles.form_glass_control}
-                  value={campaignName}
-                  onChange={(event) => setCampaignName(event.target.value)}
-                  placeholder="Campaign Name"
-                />
-              </div>
-              <div className={styles.form_glass_group}>
-                <input
-                  type="text"
-                  className={styles.form_glass_control}
-                  value={category}
-                  onChange={(event) => setCategory(event.target.value)}
-                  placeholder="Campaign Category"
-                />
-              </div>
-              <div className={styles.form_glass_group}>
-                <input
-                  type="text"
-                  className={styles.form_glass_control}
-                  value={description}
-                  onChange={(event) => setDescription(event.target.value)}
-                  placeholder="Campaign Description"
-                />
-              </div>
-              <div className={styles.form_glass_group}>
-                <input
-                  type="text"
-                  className={styles.form_glass_control}
-                  value={minimumContribution}
-                  onChange={(event) =>
-                    setMinimumContribution(event.target.value)
-                  }
-                  placeholder="Minimum Contribution (wei)"
-                />
-              </div>
-              {errorMessage && (
-                <Message error header="Oops!" content={errorMessage} />
-              )}
-              <div className={styles.buttonContainer}>
-                <button className={styles.btn}>Register</button>
-              </div>
+
+      <main className="flex justify-center align-middle">
+        <section className="bg-black bg-opacity-50 backdrop-blur-lg backdrop-filter rounded-xl p-12 px-32 overflow-y-auto mx-20 my-8">
+
+          <div className="container">
+
+            <div className="">
+              <h1 className="text-4xl p-2 mb-8"><b className="text-cyan-500">New</b> Campaign</h1>
             </div>
+
+            <form onSubmit={onSubmit}>
+              <div className="w-70">
+                <div className="">
+
+                  <div className="">
+                    <p>Campaign Name: </p>
+                    <input
+                      type="text"
+                      className="p-3 px-28 m-4 mt-2 rounded-lg text-gray-900"
+                      value={campaignName}
+                      onChange={(event) => setCampaignName(event.target.value)}
+                      placeholder="Enter Campaign Name"
+                    />
+                  </div>
+
+                  <div className="">
+                    <p>Campaign Category: </p>
+                    <input
+                      type="text"
+                      className="p-3 text-gray-900 px-28 m-4  mt-2 rounded-lg "
+                      value={category}
+                      onChange={(event) => setCategory(event.target.value)}
+                      placeholder="Select Campaign Category"
+                    />
+                  </div>
+                  <div className="">
+                    <p>Campaign Description: </p>
+                    <textarea
+                      type="text"
+                      className="p-3 text-gray-900 px-28 m-4 ml-6 mt-2 rounded-lg"
+                      value={description}
+                      onChange={(event) => setDescription(event.target.value)}
+                      placeholder="Enter Campaign Description"
+                    />
+                  </div>
+                  <div className="">
+                    <p>Minimum Contribution (wei): </p>
+                    <input
+                      type="text"
+                      className="p-3 text-gray-900 px-28 m-4 mb-2 mt-2 rounded-lg"
+                      value={minimumContribution}
+                      onChange={(event) =>
+                        setMinimumContribution(event.target.value)
+                      }
+                      placeholder="Contribution In Wei"
+                    />
+                  </div>
+                  {errorMessage && (
+                    <Message error header="Oops!" content={errorMessage} />
+                  )}
+                  <div className="bg-black rounded-lg text-gray-400 hover:text-white m-4 p-4 mb-0 flex justify-center align-middle hover:shadow-lg hover:shadow-cyan-500">
+                    <button className="">Register</button>
+                  </div>
+                </div>
+              </div>
+
+            </form>
           </div>
-        </form>
-      </div>
-    </>
+
+        </section>
+      </main>
+    </div >
   );
 };
 
 export default CampaignNew;
 
-/* <a className="btn" href="https://www.instagram.com/arozqq/ target=" _blank"><svg height={20} viewBox="0 0 512 512" width={20} xmlns="http://www.w3.org/2000/svg" style={{paddingTop: '5px'}}>
-              <g fill=" none" fillRule="evenodd">
-                <path d="M482.56 261.36c0-16.73-1.5-32.83-4.29-48.27H256v91.29h127.01c-5.47 29.5-22.1 54.49-47.09 71.23v59.21h76.27c44.63-41.09 70.37-101.59 70.37-173.46z" fill="#4285f4" />
-                <path d="M256 492c63.72 0 117.14-21.13 156.19-57.18l-76.27-59.21c-21.13 14.16-48.17 22.53-79.92 22.53-61.47 0-113.49-41.51-132.05-97.3H45.1v61.15c38.83 77.13 118.64 130.01 210.9 130.01z" fill="#34a853" />
-                <path d="M123.95 300.84c-4.72-14.16-7.4-29.29-7.4-44.84s2.68-30.68 7.4-44.84V150.01H45.1C29.12 181.87 20 217.92 20 256c0 38.08 9.12 74.13 25.1 105.99l78.85-61.15z" fill="#fbbc05" />
-                <path d="M256 113.86c34.65 0 65.76 11.91 90.22 35.29l67.69-67.69C373.03 43.39 319.61 20 256 20c-92.25 0-172.07 52.89-210.9 130.01l78.85 61.15c18.56-55.78 70.59-97.3 132.05-97.3z" fill="#ea4335" />
-                <path d="M20 20h472v472H20V20z" />
-              </g>
-            </svg></a>
 
-   {/* // <Layout>
-    //   <h3>Create a Campaign</h3>
-
-    //   <Form onSubmit={onSubmit} error={!!errorMessage}>
-    //     <Form.Field>
-    //       <label>Campaign Name</label>
-    //       <Input
-    //         label="Enter Campaign Name"
-    //         labelPosition="left"
-    //         value={campaignName}
-    //         onChange={(event) => setCampaignName(event.target.value)}
-    //       />
-    //     </Form.Field>
-
-    //     <Form.Field>
-    //       <label>Campaign Category</label>
-    //       <Input
-    //         label="Enter Campaign Category"
-    //         labelPosition="left"
-    //         value={category}
-    //         onChange={(event) => setCategory(event.target.value)}
-    //       />
-    //     </Form.Field>
-
-    //     <Form.Field>
-    //       <label>Campaign Description</label>
-    //       <Input
-    //         label="Enter Campaign Description"
-    //         labelPosition="left"
-    //         value={description}
-    //         onChange={(event) => setDescription(event.target.value)}
-    //       />
-    //     </Form.Field>
-
-    //     <Form.Field>
-    //       <label>Minimum Contribution</label>
-    //       <Input
-    //         label="wei"
-    //         labelPosition="right"
-    //         value={minimumContribution}
-    //         onChange={(event) => setMinimumContribution(event.target.value)}
-    //       />
-    //     </Form.Field>
-
-    //     <Message error header="Oops!" content={errorMessage} />
-    //     <Button loading={loading} primary>
-    //       Create!
-    //     </Button>
-    //   </Form>
-    // </Layout> */

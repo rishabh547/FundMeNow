@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import { Button, Table } from "semantic-ui-react";
 import Link from "next/link";
-import Layout from "../../../../components/Layout";
 import Campaign from "../../../../ethereum/campaign";
 import RequestRow from "../../../../components/RequestRow";
-import Navbar from "../../../../components/Navbar";
-import CustomButton from "../../../../components/CustomButton";
-import styles from "../../../../styles/Requests.module.css";
+import Navbar from "../../../../components/NavbarNew";
 
 class RequestIndex extends Component {
   static async getInitialProps(props) {
@@ -41,20 +38,20 @@ class RequestIndex extends Component {
     const { Header, Row, HeaderCell, Body } = Table;
 
     return (
-      <>
+      <div className="bg-gradient-to-br from-black via-gray-900 to-cyan-500 w-full h-screen text-white">
         <Navbar></Navbar>
-        <Layout>
-          <div className={styles.title}>
-            <h1 className={styles.heading}>Requests</h1>
+        <div className="flex flex-col align-middle justify-center">
+          <div className="">
+            <h1 className="">Requests</h1>
           </div>
-          <div className={styles.buttonContainer}>
-            <CustomButton
-              link={`/campaigns/${this.props.address}/requests/new`}
+          <div className="">
+            <Link
+              href={`/campaigns/${this.props.address}/requests/new`} className="bg-white text-black rounded-lg p-4"
             >
-              New Request
-            </CustomButton>
+              Add Request
+            </Link>
           </div>
-          <Table>
+          <Table className='bg-white text-black rounded-lg m-8'>
             <Header>
               <Row>
                 <HeaderCell>ID</HeaderCell>
@@ -88,8 +85,8 @@ class RequestIndex extends Component {
             </Body>
           </Table>
           <div>Found {this.props.requestCount.toString()} requests.</div>
-        </Layout>
-      </>
+        </div>
+      </div>
     );
   }
 }

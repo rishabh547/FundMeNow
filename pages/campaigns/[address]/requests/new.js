@@ -4,9 +4,7 @@ import Campaign from "../../../../ethereum/campaign";
 import web3 from "../../../../ethereum/web3";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Navbar from "../../../../components/Navbar";
-import styles from "../../../../styles/RequestForm.module.css";
-import Layout from "../../../../components/Layout";
+import Navbar from "../../../../components/NavbarNew";
 
 const RequestNew = ({ address }) => {
   const router = useRouter();
@@ -72,64 +70,74 @@ const RequestNew = ({ address }) => {
 
   return (
     <>
-      <Navbar></Navbar>
-      <div className={styles.wrapper_form}>
-        <div className={styles.title}>
-          <h1 className={styles.heading}>New Request</h1>
-        </div>
-        {/* <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} />
-        <span className={styles.circle} /> */}
-        <form onSubmit={onSubmit}>
-          <div className={styles.card_glass}>
-            {/* <div className={styles.card_glass_header}>
-              <div className={styles.glass_header_text}>New Campaign</div>
-            </div> */}
-            <div className={styles.glass_container}>
-              <div className={styles.form_glass_group}>
-                <input
-                  type="text"
-                  className={styles.form_glass_control}
-                  value={description}
-                  onChange={(event) => setDescription(event.target.value)}
-                  placeholder="Request Description"
-                />
-              </div>
-              <div className={styles.form_glass_group}>
-                <input
-                  type="text"
-                  className={styles.form_glass_control}
-                  value={value}
-                  onChange={(event) => setValue(event.target.value)}
-                  placeholder="Request Amount in ether"
-                />
-              </div>
-              <div className={styles.form_glass_group}>
-                <input
-                  type="text"
-                  className={styles.form_glass_control}
-                  value={recipient}
-                  onChange={(event) => setRecipient(event.target.value)}
-                  placeholder="Recipient"
-                />
-              </div>
-              {errorMessage && (
-                <Message error header="Oops!" content={errorMessage} />
-              )}
-              <div className={styles.buttonContainer}>
-                <button className={styles.btn}>Create Request</button>
-              </div>
+      <div className="bg-gradient-to-br from-black via-gray-900 to-cyan-500 w-full h-screen text-white">
+        <Navbar></Navbar>
+
+        <main className="flex justify-center align-middle">
+          <section className="bg-black bg-opacity-50 backdrop-blur-lg backdrop-filter rounded-xl p-12 px-32 overflow-y-auto mx-20 my-8">
+            <div className="flex justify-end">
+              <Link href={`/campaigns/${address}/requests`} className="">
+                <h1 className="text-md mt-6 mb-3 mx-0 w-28 text-gray-300 hover:text-white  cursor-pointer"> <b className="text-cyan-500">←</b> All requests</h1>
+              </Link>
             </div>
-          </div>
-        </form>
-      </div>
+
+            <div className="container">
+
+              <div className="">
+                <h1 className="text-4xl p-2 mb-8"><b className="text-cyan-500">New</b> Request</h1>
+              </div>
+
+              <form onSubmit={onSubmit}>
+                <div className="w-70">
+                  <div className="">
+
+                    <div className="">
+                      <p>Request Description: </p>
+                      <input
+                        type="text"
+                        className="p-3 px-28 m-4 mt-2 rounded-lg text-gray-900"
+                        value={description}
+                        onChange={(event) => setDescription(event.target.value)}
+                        placeholder="Request Description"
+                      />
+                    </div>
+
+                    <div className="">
+                      <p>Request Amount (ether): </p>
+                      <input
+                        type="text"
+                        className="p-3 text-gray-900 px-28 m-4  mt-2 rounded-lg "
+                        value={value}
+                        onChange={(event) => setValue(event.target.value)}
+                        placeholder="Request Amount in ether"
+                      />
+                    </div>
+                    <div className="">
+                      <p>Recipient Wallet Address: </p>
+                      <input
+                        type="text"
+                        className="p-3 text-gray-900 px-28 m-4 mt-2 rounded-lg"
+                        value={recipient}
+                        onChange={(event) => setRecipient(event.target.value)}
+                        placeholder="Recipient"
+                      />
+                    </div>
+
+                    {errorMessage && (
+                      <Message error header="Oops!" content={errorMessage} />
+                    )}
+                    <div className="bg-black rounded-lg text-gray-400 hover:text-white m-4 p-4 mb-0 flex justify-center align-middle hover:shadow-lg hover:shadow-cyan-500">
+                      <button className="">Create Request</button>
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+
+          </section>
+        </main>
+      </div >
     </>
   );
 };
@@ -141,40 +149,3 @@ RequestNew.getInitialProps = ({ query }) => {
 };
 
 export default RequestNew;
-
-/* <Layout>
-<Link href={`/campaigns/${address}/requests`}>
-  <a>Back</a>
-</Link>
-<h3>Create a Request</h3>
-<Form onSubmit={onSubmit} error={!!errorMessage}>
-  <Form.Field>
-    <label>Description</label>
-    <Input
-      value={description}
-      onChange={(event) => setDescription(event.target.value)}
-    />
-  </Form.Field>
-
-  <Form.Field>
-    <label>Value in Ether</label>
-    <Input
-      value={value}
-      onChange={(event) => setValue(event.target.value)}
-    />
-  </Form.Field>
-
-  <Form.Field>
-    <label>Recipient</label>
-    <Input
-      value={recipient}
-      onChange={(event) => setRecipient(event.target.value)}
-    />
-  </Form.Field>
-
-  <Message error header="Oops!" content={errorMessage} />
-  <Button primary loading={loading}>
-    Create!
-  </Button>
-</Form>
-</Layout> */

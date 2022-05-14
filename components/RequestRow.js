@@ -4,6 +4,7 @@ import web3 from "../ethereum/web3";
 import Campaign from "../ethereum/campaign";
 
 class RequestRow extends Component {
+
   onApprove = async () => {
     const campaign = Campaign(this.props.address);
 
@@ -22,8 +23,23 @@ class RequestRow extends Component {
     });
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      id: '',
+      value: 0,
+      description: '',
+      complete: false,
+      approvalCount: 0,
+      recipient: '',
+      approversCount: ''
+    }
+  }
+
   render() {
     const { Row, Cell } = Table;
+
     var {
       id,
       value,
@@ -34,40 +50,39 @@ class RequestRow extends Component {
       approversCount,
     } = this.props;
 
-    var request = {
+    this.setState({
       id: id,
       value: value,
       description: description,
       complete: complete,
       approvalCount: approvalCount.toString(),
       recipient: recipient,
-    };
+    });
 
-    console.log(web3.utils.fromWei("54200", "ether"));
-
-    const readyToFinalize = request.approvalCount > approversCount / 2;
+    const readyToFinalize = this.state.approvalCount > approversCount / 2;
 
     return (
       <Row
-        disabled={request.complete}
-        positive={readyToFinalize && !request.complete}
+        disabled={this.state.complete}
+        positive={readyToFinalize && !this.state.complete}
       >
         <Cell>{id}</Cell>
-        <Cell>{request.description}</Cell>
-        <Cell>{web3.utils.fromWei(request.value.toString(), "ether")}</Cell>
-        <Cell>{request.recipient}</Cell>
+        <Cell>{this.state.description}</Cell>
+        {/* <Cell>{web3.utils.fromWei(this.state.value.toString(), "ether")}</Cell> */}
+        <Cell>{this.state.value} wei</Cell>
+        <Cell>{this.state.recipient}</Cell>
         <Cell>
-          {request.approvalCount}/{approversCount}
+          {this.state.approvalCount}/{approversCount}
         </Cell>
         <Cell>
-          {request.complete ? null : (
+          {this.state.complete ? null : (
             <Button color="green" basic onClick={this.onApprove}>
               Approve
             </Button>
           )}
         </Cell>
         <Cell>
-          {request.complete ? null : (
+          {this.state.complete ? null : (
             <Button color="teal" basic onClick={this.onFinalize}>
               Finalize
             </Button>
