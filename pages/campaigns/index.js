@@ -19,7 +19,7 @@ class CampaignIndex extends Component {
       setLoading(false);
       return;
     }
-    for (let i = 0; i < campaigns.length; i++) {
+    for (let i = 0; i < campaigns?.length; i++) {
       const campaign = Campaign(campaigns[i]);
       const summary = await campaign.methods.getSummary().call();
 

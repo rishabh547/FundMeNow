@@ -19,6 +19,7 @@ function NavbarNew() {
                 alert("Connected to MetaMask");
                 setDisplayText("Connected");
             }
+            console.log(accounts);
         } else {
             alert("Please install MetaMask");
         }
@@ -41,16 +42,16 @@ function NavbarNew() {
 
                     <div class="hidden md:flex items-center space-x-1">
                         <Link href="/" className="">
-                            <p className="py-4 px-4 text-gray-400 border-b-4 border-cyan-500 font-semibold">Home</p>
+                            <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300 cursor-pointer">Home</p>
                         </Link>
                         <Link href="/campaigns">
-                            <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300">Campaigns</p>
+                            <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300 cursor-pointer">Campaigns</p>
                         </Link>
                         <Link href="/aboutUs">
-                            <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300">AboutUs</p>
+                            <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300 cursor-pointer">AboutUs</p>
                         </Link>
                         <Link href="/campaigns/new">
-                            <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300">Raise Funding</p>
+                            <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300 cursor-pointer">Raise Funding</p>
                         </Link>
                     </div>
 

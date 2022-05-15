@@ -8,10 +8,16 @@ class RequestRow extends Component {
   onApprove = async () => {
     const campaign = Campaign(this.props.address);
 
-    const accounts = await web3.eth.getAccounts();
-    await campaign.methods.approveRequest(this.props.id).send({
-      from: accounts[0],
-    });
+    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+
+    try {
+      await campaign.methods.approveRequest(this.props.id).send({
+        from: accounts[0],
+      });
+    }
+    catch (err) {
+      alert(err.error.message);
+    }
   };
 
   onFinalize = async () => {
@@ -23,23 +29,7 @@ class RequestRow extends Component {
     });
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      id: '',
-      value: 0,
-      description: '',
-      complete: false,
-      approvalCount: 0,
-      recipient: '',
-      approversCount: ''
-    }
-  }
-
   render() {
-    const { Row, Cell } = Table;
-
     var {
       id,
       value,
@@ -50,45 +40,43 @@ class RequestRow extends Component {
       approversCount,
     } = this.props;
 
-    this.setState({
-      id: id,
-      value: value,
-      description: description,
-      complete: complete,
-      approvalCount: approvalCount.toString(),
-      recipient: recipient,
-    });
 
-    const readyToFinalize = this.state.approvalCount > approversCount / 2;
+    const readyToFinalize = approvalCount > approversCount / 2;
 
     return (
-      <Row
-        disabled={this.state.complete}
-        positive={readyToFinalize && !this.state.complete}
-      >
-        <Cell>{id}</Cell>
-        <Cell>{this.state.description}</Cell>
+      <tr className="">
+        <td className="py-6"><p className="flex justify-center">{id}</p></td>
+        <td className=""><p className="flex justify-center">{description}</p></td>
         {/* <Cell>{web3.utils.fromWei(this.state.value.toString(), "ether")}</Cell> */}
-        <Cell>{this.state.value} wei</Cell>
-        <Cell>{this.state.recipient}</Cell>
-        <Cell>
-          {this.state.approvalCount}/{approversCount}
-        </Cell>
-        <Cell>
-          {this.state.complete ? null : (
-            <Button color="green" basic onClick={this.onApprove}>
-              Approve
-            </Button>
+        <td><p className="flex justify-center">{value} wei</p></td>
+        <td><p className="flex justify-center">{recipient}</p></td>
+        <td><p className="flex justify-center">{approvalCount}/{approversCount}</p>
+
+        </td>
+        <td>
+          {complete ? null : (
+            <div className="flex justify-center">
+              <button className="bg-green-500 rounded-lg p-2 px-4 hover:bg-green-700 hover:shadow-lg hover:shadow-white flex justify-center" onClick={this.onApprove}>
+                Approve
+              </button>
+            </div>
+
           )}
-        </Cell>
-        <Cell>
-          {this.state.complete ? null : (
-            <Button color="teal" basic onClick={this.onFinalize}>
-              Finalize
-            </Button>
+        </td>
+        <td>
+          {!complete && readyToFinalize ? (
+            <div className="flex justify-center ml-2">
+              <button className="bg-gray-900 hover:bg-black hover:shadow-lg hover:shadow-cyan-300 text-cyan-300 rounded-lg p-2 px-4" onClick={this.onFinalize}>
+                Finalize
+              </button>
+            </div>
+          ) : (
+            <div className="flex justify-center">
+              <button className="bg-gray-400 p-2 px-4 cursor-not-allowed rounded-lg">Finalize</button>
+            </div>
           )}
-        </Cell>
-      </Row>
+        </td>
+      </tr>
     );
   }
 }
