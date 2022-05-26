@@ -4,10 +4,18 @@
 ## To Run the application locally
 ```
 1. git clone https://github.com/rishabh547/FundMeNow
-2. Install all dependencies using command : pip install -r /path/to/requirements.txt
-3. cd FundMeNow
-4. Then do npm run start
-5. You can now see the project runnning at http://127.0.0.1:8000
+2. cd into root project folder **FundMeNow**
+3. Add a .env file with the following data:
+```
+ACCOUNT_MNEMONIC = " "
+RINKEBY_ENDPOINT = <rinkeby_endpoint url>
+DEPLOYED_ADDRESS = <deploy_address>
+MORALIS_URL = <moralis_url>
+MORALIS_SPEEDY_NODE_KEY = <moralis_node_key>
+```
+4. Install all dependencies using command : npm i 
+5. Then do npm run dev
+6. You can now see the project runnning at http://127.0.0.1:8000
 ```
 
 ## Prerequisites to create Campaign and Contribute
