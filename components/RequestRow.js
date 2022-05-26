@@ -3,12 +3,14 @@ import { Table, Button } from "semantic-ui-react";
 import web3 from "../ethereum/web3";
 import Campaign from "../ethereum/campaign";
 import { useToasts } from 'react-toast-notifications';
+import nprogress from "nprogress";
 
 const RequestRow = (props) => {
   const { addToast } = useToasts();
 
   const onApprove = async () => {
     const campaign = Campaign(props.address);
+    nprogress.start();
 
     const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
 
@@ -16,20 +18,27 @@ const RequestRow = (props) => {
       await campaign.methods.approveRequest(props.id).send({
         from: accounts[0],
       });
+      addToast("Request approved", { appearance: 'success', autoDismiss: true });
+      nprogress.done();
+      // reload the same tab
+      window.location.reload();
     }
     catch (err) {
       addToast("Error: " + err.error.message, { appearance: "error", autoDismiss: true });
+      nprogress.done();
       // alert(err.error.message);
     }
   };
 
   const onFinalize = async () => {
     const campaign = Campaign(props.address);
-
+    nprogress.start();
     const accounts = await web3.eth.getAccounts();
     await campaign.methods.finalizeRequest(props.id).send({
       from: accounts[0],
     });
+    addToast("Request finalized", { appearance: 'success', autoDismiss: true });
+    nprogress.done();
   };
 
   var {

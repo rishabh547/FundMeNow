@@ -4,6 +4,7 @@ import Campaign from "../ethereum/campaign";
 import web3 from "../ethereum/web3";
 import { useRouter } from "next/router";
 import { useToasts } from "react-toast-notifications";
+import nprogress from "nprogress";
 
 const ContributeForm = (props) => {
   const router = useRouter();
@@ -15,6 +16,7 @@ const ContributeForm = (props) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    nprogress.start();
 
     // validate the input
     if (!value) {
@@ -22,6 +24,7 @@ const ContributeForm = (props) => {
         appearance: "error",
         autoDismiss: true,
       });
+      nprogress.done();
       // setErrorMessage("Please enter a valid amount");
       return;
     }
@@ -46,10 +49,11 @@ const ContributeForm = (props) => {
               appearance: "info",
               autoDismiss: true,
             });
+            nprogress.done();
+            router.replace("/campaigns/[address]", `/campaigns/${props.address}`);
           });
       });
 
-      router.replace("/campaigns/[address]", `/campaigns/${props.address}`);
     } catch (err) {
       addToast("Error: " + err.message, { appearance: "error", autoDismiss: true });
       setErrorMessage(err.message);

@@ -24,7 +24,7 @@ const CampaignNew = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-
+    nprogress.start();
     setErrorMessage("");
     setLoading(true);
 
@@ -35,26 +35,46 @@ const CampaignNew = () => {
 
         // validate the input
         if (campaignName.trim().length === 0) {
-          setErrorMessage("Campaign Name cannot be empty");
+          addToast("Campaign name cannot be empty", {
+            appearance: "error",
+            autoDismiss: true,
+          });
+          // setErrorMessage("Campaign Name cannot be empty");
           setLoading(false);
+          nprogress.done();
           return;
         }
 
         if (description.trim().length === 0) {
-          setErrorMessage("Description cannot be empty");
+          // setErrorMessage("Description cannot be empty");
+          addToast("Description cannot be empty", {
+            appearance: "error",
+            autoDismiss: true,
+          });
           setLoading(false);
+          nprogress.done();
           return;
         }
 
         if (category.trim().length === 0) {
-          setErrorMessage("Category cannot be empty");
+          // setErrorMessage("Category cannot be empty");
+          addToast("Category cannot be empty", {
+            appearance: "error",
+            autoDismiss: true,
+          });
           setLoading(false);
+          nprogress.done();
           return;
         }
 
         if (minimumContribution <= 0) {
-          setErrorMessage("Minimum Contribution must be greater than 0");
+          // setErrorMessage("Minimum Contribution must be greater than 0");
+          addToast("Minimum Contribution must be greater than 0", {
+            appearance: "error",
+            autoDismiss: true,
+          });
           setLoading(false);
+          nprogress.done();
           return;
         }
 
@@ -73,6 +93,8 @@ const CampaignNew = () => {
               appearance: "info",
               autoDismiss: true,
             });
+            nprogress.done();
+            router.push("/campaigns");
           });
       });
 
@@ -147,6 +169,7 @@ const CampaignNew = () => {
                   {errorMessage && (
                     <Message error header="Oops!" content={errorMessage} />
                   )}
+
                   <div className="bg-black rounded-lg text-gray-400 hover:text-white m-4 p-4 mb-0 flex justify-center align-middle hover:shadow-lg hover:shadow-cyan-500">
                     <button className="">Register</button>
                   </div>

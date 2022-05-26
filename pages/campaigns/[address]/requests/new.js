@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Navbar from "../../../../components/NavbarNew";
 import { useToasts } from "react-toast-notifications";
+import nprogress from "nprogress";
 
 const RequestNew = ({ address }) => {
   const router = useRouter();
@@ -19,18 +20,22 @@ const RequestNew = ({ address }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    nprogress.start();
 
     // validate the input
     if (!recipient || !description || !value) {
       setErrorMessage("Please enter all fields");
+      nprogress.done();
       return;
     }
     if (!web3.utils.isAddress(recipient)) {
       setErrorMessage("Please enter a valid address");
+      nprogress.done();
       return;
     }
     if (value <= 0) {
       setErrorMessage("Please enter a valid amount");
+      nprogress.done();
       return;
     }
 
@@ -53,6 +58,7 @@ const RequestNew = ({ address }) => {
           });
           setErrorMessage("You are not the manager of this campaign, Only managers can create a request");
           setLoading(false);
+          nprogress.done();
           return;
         }
 
@@ -68,7 +74,7 @@ const RequestNew = ({ address }) => {
           appearance: "success",
           autoDismiss: true,
         });
-
+        nprogress.done();
         router.push(`/campaigns/${address}/requests`);
       });
     } catch (err) {
