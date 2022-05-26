@@ -9,7 +9,7 @@
 2. cd into root project folder **FundMeNow**
 3. Add a `.env` file in the same folder with the following data:
 
-```python
+```javascript
 ACCOUNT_MNEMONIC = " "
 RINKEBY_ENDPOINT = <rinkeby_endpoint url>
 DEPLOYED_ADDRESS = <deployment_address>
