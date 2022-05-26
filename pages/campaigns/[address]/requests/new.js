@@ -68,6 +68,7 @@ const RequestNew = ({ address }) => {
           appearance: "success",
           autoDismiss: true,
         });
+
         router.push(`/campaigns/${address}/requests`);
       });
     } catch (err) {

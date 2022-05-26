@@ -4,85 +4,83 @@ import web3 from "../ethereum/web3";
 import Campaign from "../ethereum/campaign";
 import { useToasts } from 'react-toast-notifications';
 
-class RequestRow extends Component {
+const RequestRow = (props) => {
+  const { addToast } = useToasts();
 
-  onApprove = async () => {
-    const { addToast } = useToasts();
-
-    const campaign = Campaign(this.props.address);
+  const onApprove = async () => {
+    const campaign = Campaign(props.address);
 
     const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
 
     try {
-      await campaign.methods.approveRequest(this.props.id).send({
+      await campaign.methods.approveRequest(props.id).send({
         from: accounts[0],
       });
     }
     catch (err) {
-      addToast("Error: " + err.message, { appearance: "error", autoDismiss: true });
-      alert(err.error.message);
+      addToast("Error: " + err.error.message, { appearance: "error", autoDismiss: true });
+      // alert(err.error.message);
     }
   };
 
-  onFinalize = async () => {
-    const campaign = Campaign(this.props.address);
+  const onFinalize = async () => {
+    const campaign = Campaign(props.address);
 
     const accounts = await web3.eth.getAccounts();
-    await campaign.methods.finalizeRequest(this.props.id).send({
+    await campaign.methods.finalizeRequest(props.id).send({
       from: accounts[0],
     });
   };
 
-  render() {
-    var {
-      id,
-      value,
-      description,
-      complete,
-      approvalCount,
-      recipient,
-      approversCount,
-    } = this.props;
+  var {
+    id,
+    value,
+    description,
+    complete,
+    approvalCount,
+    recipient,
+    approversCount,
+  } = props;
 
 
-    const readyToFinalize = approvalCount > approversCount / 2;
+  const readyToFinalize = approvalCount > approversCount / 2;
 
-    return (
-      <tr className="">
-        <td className="py-6"><p className="flex justify-center">{id}</p></td>
-        <td className=""><p className="flex justify-center">{description}</p></td>
-        {/* <Cell>{web3.utils.fromWei(this.state.value.toString(), "ether")}</Cell> */}
-        <td><p className="flex justify-center">{value} wei</p></td>
-        <td><p className="flex justify-center">{recipient}</p></td>
-        <td><p className="flex justify-center">{approvalCount}/{approversCount}</p>
+  return (
+    <tr className="">
+      <td className="py-6"><p className="flex justify-center">{id}</p></td>
+      <td className=""><p className="flex justify-center">{description}</p></td>
+      {/* <Cell>{web3.utils.fromWei(this.state.value.toString(), "ether")}</Cell> */}
+      <td><p className="flex justify-center">{value} wei</p></td>
+      <td><p className="flex justify-center">{recipient}</p></td>
+      <td><p className="flex justify-center">{approvalCount}/{approversCount}</p>
 
-        </td>
-        <td>
-          {complete ? null : (
-            <div className="flex justify-center">
-              <button className="bg-green-500 rounded-lg p-2 px-4 hover:bg-green-700 hover:shadow-lg hover:shadow-white flex justify-center" onClick={this.onApprove}>
-                Approve
-              </button>
-            </div>
+      </td>
+      <td>
+        {complete ? null : (
+          <div className="flex justify-center">
+            <button className="bg-green-500 rounded-lg p-2 px-4 hover:bg-green-700 hover:shadow-lg hover:shadow-white flex justify-center" onClick={onApprove}>
+              Approve
+            </button>
+          </div>
 
-          )}
-        </td>
-        <td>
-          {!complete && readyToFinalize ? (
-            <div className="flex justify-center ml-2">
-              <button className="bg-gray-900 hover:bg-black hover:shadow-lg hover:shadow-cyan-300 text-cyan-300 rounded-lg p-2 px-4" onClick={this.onFinalize}>
-                Finalize
-              </button>
-            </div>
-          ) : (
-            <div className="flex justify-center">
-              <button className="bg-gray-400 p-2 px-4 cursor-not-allowed rounded-lg">Finalize</button>
-            </div>
-          )}
-        </td>
-      </tr>
-    );
-  }
+        )}
+      </td>
+      <td>
+        {!complete && readyToFinalize ? (
+          <div className="flex justify-center ml-2">
+            <button className="bg-gray-900 hover:bg-black hover:shadow-lg hover:shadow-cyan-300 text-cyan-300 rounded-lg p-2 px-4" onClick={onFinalize}>
+              Finalize
+            </button>
+          </div>
+        ) : (
+          <div className="flex justify-center">
+            <button className="bg-gray-400 p-2 px-4 cursor-not-allowed rounded-lg">Finalize</button>
+          </div>
+        )}
+      </td>
+    </tr>
+  );
+
 }
 
 export default RequestRow;

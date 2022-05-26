@@ -1,11 +1,24 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useToasts } from 'react-toast-notifications';
+import { useContext } from 'react';
+import AppContext from '../AppContext';
 
 function NavbarNew() {
+    const value = useContext(AppContext);
+    const { address } = value.state;
+
     const { addToast } = useToasts();
 
     const [displayText, setDisplayText] = useState("Connect Wallet");
+
+    useEffect(() => {
+        if (address === null) {
+            setDisplayText("Connect Wallet");
+        } else {
+            setDisplayText("Disconnect Wallet");
+        }
+    }, [address]);
 
     const isMetaMaskInstalled = () => {
         //Have to check the ethereum binding on the window object to see if it's installed
@@ -23,6 +36,7 @@ function NavbarNew() {
                 setDisplayText("Connected");
             }
             console.log(accounts);
+            value.setAddress(accounts[0]);
         } else {
             addToast("Please install MetaMask", { appearance: 'error', autoDismiss: true });
         }
