@@ -16,8 +16,8 @@ DEPLOYED_ADDRESS = <deployment_address>
 MORALIS_URL = <moralis_url>
 MORALIS_SPEEDY_NODE_KEY = <moralis_node_key>
 ```
-4. Install all dependencies using command : npm i 
-5. Then do npm run dev
+4. Install all dependencies using command `npm i` 
+5. Then do `npm run dev`
 6. You can now see the project runnning at http://127.0.0.1:8000
 
 
