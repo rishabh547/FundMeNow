@@ -1,22 +1,25 @@
 # FundMeNow
 ### An Ethereum Blockchain based Crowdfunding Platform.
 
+## Demo Video
+
 ## To Run the application locally
-```
+
 1. git clone https://github.com/rishabh547/FundMeNow
 2. cd into root project folder **FundMeNow**
-3. Add a .env file with the following data:
-```
+3. Add a `.env` file in the same folder with the following data:
+
+```python
 ACCOUNT_MNEMONIC = " "
 RINKEBY_ENDPOINT = <rinkeby_endpoint url>
-DEPLOYED_ADDRESS = <deploy_address>
+DEPLOYED_ADDRESS = <deployment_address>
 MORALIS_URL = <moralis_url>
 MORALIS_SPEEDY_NODE_KEY = <moralis_node_key>
 ```
 4. Install all dependencies using command : npm i 
 5. Then do npm run dev
 6. You can now see the project runnning at http://127.0.0.1:8000
-```
+
 
 ## Prerequisites to create Campaign and Contribute
 1. Install **Metamask** as Google Chrome Extension and Create an account.
@@ -43,7 +46,6 @@ Control over Cash Outflow with the help of Smart Contracts
 - Solidity
 - Hardhat
 - Remix IDE
-- Ganache
 
 **Frontend**:
 - Web3 JS / Ether JS
@@ -51,8 +53,11 @@ Control over Cash Outflow with the help of Smart Contracts
 - Metamask
 - React JS
 
+## Testing Smart Contract Functionalities with Mocha
+- **Mocha** is a feature-rich JavaScript test framework running on Node.js and in the browser, making asynchronous testing simple and fun. 
+- **Mocha** tests run serially, allowing for flexible and accurate reporting, while mapping uncaught exceptions to the correct test cases.
 
-
-
-
-```
+### Contributors:
+- Bhavin Patel
+- Burhanuddin Rangwala
+- Rishabh Kothari
