@@ -58,6 +58,6 @@ Control over Cash Outflow with the help of Smart Contracts
 - **Mocha** tests run serially, allowing for flexible and accurate reporting, while mapping uncaught exceptions to the correct test cases.
 
 ### Contributors:
-- [Bhavin Patel]()
-- [Burhanuddin Rangwala]()
-- [Rishabh Kothari]()
+- [Bhavin Patel](https://github.com/bhavinp16)
+- [Burhanuddin Rangwala](https://github.com/bamblebam)
+- [Rishabh Kothari](https://github.com/rishabh547)
