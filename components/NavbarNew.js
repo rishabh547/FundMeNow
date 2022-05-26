@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { useToasts } from 'react-toast-notifications';
 
 function NavbarNew() {
+    const { addToast } = useToasts();
 
     const [displayText, setDisplayText] = useState("Connect Wallet");
 
@@ -16,12 +18,13 @@ function NavbarNew() {
         if (isMetaMaskInstalled()) {
             const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
             if (accounts[0]) {
-                alert("Connected to MetaMask");
+                addToast("Connected to MetaMask", { appearance: 'success', autoDismiss: true });
+
                 setDisplayText("Connected");
             }
             console.log(accounts);
         } else {
-            alert("Please install MetaMask");
+            addToast("Please install MetaMask", { appearance: 'error', autoDismiss: true });
         }
     };
 
@@ -32,12 +35,14 @@ function NavbarNew() {
                 <div class="flex justify-between">
 
                     <div class="flex space-x-7 px-3">
-                        <a href="/" class="flex items-center py-4 px-2">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Uber_App_Icon.svg/2048px-Uber_App_Icon.svg.png" alt="Logo" class="h-8 w-8 mr-2" />
-                            <span class="font-semibold text-gray-200 text-lg mx-4">
-                                FundMeNow
-                            </span>
-                        </a>
+                        <Link href="/">
+                            <div class="flex items-center py-4 px-2 cursor-pointer">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Uber_App_Icon.svg/2048px-Uber_App_Icon.svg.png" alt="Logo" class="h-8 w-8 mr-2" />
+                                <span class="font-semibold text-gray-200 text-lg mx-4">
+                                    FundMeNow
+                                </span>
+                            </div>
+                        </Link>
                     </div>
 
                     <div class="hidden md:flex items-center space-x-1">

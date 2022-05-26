@@ -93,7 +93,7 @@ class CampaignShow extends Component {
           <section>
             <ContributeForm address={this.props.address} />
 
-            <a href={`/campaigns/${this.props.address}/requests`} class="max-w-7xl mx-auto shadow-lg shadow-white rounded-lg mr-20">
+            <Link href={`/campaigns/${this.props.address}/requests`} class="max-w-7xl mx-auto shadow-lg shadow-white rounded-lg mr-20">
               <div class="relative group">
                 <div class="absolute -inset-1 bg-gradient-to-r from-black to-cyan-500 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
                 <div class="relative px-7 py-6 bg-white opacity-80 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">
@@ -103,7 +103,7 @@ class CampaignShow extends Component {
                   </div>
                 </div>
               </div>
-            </a>
+            </Link>
 
           </section>
         </main>

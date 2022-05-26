@@ -3,9 +3,11 @@ import { Form, Input, Message, Button } from "semantic-ui-react";
 import Campaign from "../ethereum/campaign";
 import web3 from "../ethereum/web3";
 import { useRouter } from "next/router";
+import { useToasts } from "react-toast-notifications";
 
 const ContributeForm = (props) => {
   const router = useRouter();
+  const { addToast } = useToasts();
 
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -13,6 +15,16 @@ const ContributeForm = (props) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+
+    // validate the input
+    if (!value) {
+      addToast("Please enter a valid amount", {
+        appearance: "error",
+        autoDismiss: true,
+      });
+      // setErrorMessage("Please enter a valid amount");
+      return;
+    }
 
     const campaign = Campaign(props.address);
 
@@ -30,12 +42,16 @@ const ContributeForm = (props) => {
             value: web3.utils.toWei(value, "ether"),
           })
           .on("transactionHash", function (hash) {
-            console.log("Transaction hash: ", hash);
+            addToast(`Transaction is being mined... Transaction Hash - ${hash}`, {
+              appearance: "info",
+              autoDismiss: true,
+            });
           });
       });
 
       router.replace("/campaigns/[address]", `/campaigns/${props.address}`);
     } catch (err) {
+      addToast("Error: " + err.message, { appearance: "error", autoDismiss: true });
       setErrorMessage(err.message);
     }
     setLoading(false);

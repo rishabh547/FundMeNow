@@ -6,9 +6,12 @@ import { useRouter } from "next/router";
 import Navbar from "../../components/NavbarNew";
 import campaign from "../../ethereum/campaign";
 import Link from 'next/link';
+import { useToasts } from "react-toast-notifications";
+import nprogress from "nprogress";
 
 const CampaignNew = () => {
   const router = useRouter();
+  const { addToast } = useToasts();
 
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -66,13 +69,17 @@ const CampaignNew = () => {
             from: accounts[0],
           })
           .on("transactionHash", function (hash) {
-            console.log("Transaction hash: ", hash);
+            addToast(`Transaction is being mined... Transaction Hash - ${hash}`, {
+              appearance: "info",
+              autoDismiss: true,
+            });
           });
       });
 
       // router.push("/");
     } catch (err) {
       setErrorMessage(err.message);
+      addToast("Error: " + err.message, { appearance: "error", autoDismiss: true });
     }
     setLoading(false);
   };

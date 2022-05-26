@@ -5,9 +5,11 @@ import web3 from "../../../../ethereum/web3";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Navbar from "../../../../components/NavbarNew";
+import { useToasts } from "react-toast-notifications";
 
 const RequestNew = ({ address }) => {
   const router = useRouter();
+  const { addToast } = useToasts();
 
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -45,6 +47,10 @@ const RequestNew = ({ address }) => {
         const campaignDetails = await campaign.methods.getSummary().call();
         const manager = campaignDetails[7].toString();
         if (accounts[0] !== manager) {
+          addToast("You are not the manager of this campaign", {
+            appearance: "error",
+            autoDismiss: true,
+          });
           setErrorMessage("You are not the manager of this campaign, Only managers can create a request");
           setLoading(false);
           return;
@@ -58,8 +64,10 @@ const RequestNew = ({ address }) => {
           )
           .send({ from: accounts[0] });
 
-
-        alert("Request created!");
+        addToast("Request created successfully", {
+          appearance: "success",
+          autoDismiss: true,
+        });
         router.push(`/campaigns/${address}/requests`);
       });
     } catch (err) {

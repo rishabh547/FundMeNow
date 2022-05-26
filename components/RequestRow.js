@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { Table, Button } from "semantic-ui-react";
 import web3 from "../ethereum/web3";
 import Campaign from "../ethereum/campaign";
+import { useToasts } from 'react-toast-notifications';
 
 class RequestRow extends Component {
 
   onApprove = async () => {
+    const { addToast } = useToasts();
+
     const campaign = Campaign(this.props.address);
 
     const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
@@ -16,6 +19,7 @@ class RequestRow extends Component {
       });
     }
     catch (err) {
+      addToast("Error: " + err.message, { appearance: "error", autoDismiss: true });
       alert(err.error.message);
     }
   };
