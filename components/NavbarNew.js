@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { useToasts } from 'react-toast-notifications';
 import { useContext } from 'react';
-import AppContext from '../AppContext';
+import AppContext from '../context/AppContext';
 
 function NavbarNew() {
     const value = useContext(AppContext);
@@ -66,9 +66,9 @@ function NavbarNew() {
                         <Link href="/campaigns">
                             <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300 cursor-pointer">Campaigns</p>
                         </Link>
-                        <Link href="/">
+                        {/* <Link href="/">
                             <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300 cursor-pointer">AboutUs</p>
-                        </Link>
+                        </Link> */}
                         <Link href="/campaigns/new">
                             <p className="py-4 px-4 text-gray-400 font-semibold hover:text-cyan-500 transition duration-300 cursor-pointer">Raise Funding</p>
                         </Link>

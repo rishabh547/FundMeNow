@@ -4,7 +4,7 @@ import "../styles/nprogress.css";
 import Router from "next/router";
 import nProgress from "nprogress";
 import { ToastProvider } from 'react-toast-notifications';
-import AppContext from "../AppContext";
+import AppContext from "../context/AppContext";
 
 Router.events.on("routeChangeStart", nProgress.start);
 Router.events.on("routeChangeError", nProgress.done);
